@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="100" viewBox="0 0 300 100">
+  <style>
+    .text-primary { fill: #0d6efd; }
+    .text-white { fill: #ffffff; }
+  </style>
+  <rect width="300" height="100" rx="10" fill="#212529"/>
+  <text x="30" y="45" font-family="Arial, sans-serif" font-size="30" font-weight="bold" class="text-primary">1 CALL</text>
+  <text x="30" y="75" font-family="Arial, sans-serif" font-size="24" font-weight="bold" class="text-white">RAPID RESPONSE</text>
+  <path d="M250 30 C250 20, 260 10, 270 10 C280 10, 290 20, 290 30 C290 40, 280 50, 270 50 C260 50, 250 40, 250 30 Z" class="text-primary" />
+  <path d="M255 30 L270 20 L285 30 L270 40 Z" fill="#212529" />
+</svg>
