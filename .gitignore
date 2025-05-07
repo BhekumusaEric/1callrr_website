@@ -35,3 +35,7 @@ build/
 # Log files
 *.log
 logs/
+
+# Large files
+images/Cursor-0.49.6-x86_64.AppImage
+*.AppImage
