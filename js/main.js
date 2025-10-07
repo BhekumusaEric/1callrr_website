@@ -249,7 +249,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Removed floating animation for professional corporate look
+    // Add floating animation to certain elements
+    document.querySelectorAll('.btn-primary').forEach(btn => {
+        btn.style.animation = 'float 3s ease-in-out infinite';
+    });
 
     // Add parallax effect to hero and page header sections
     window.addEventListener('scroll', function() {
