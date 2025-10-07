@@ -12,19 +12,19 @@
 
 /* Global Styles */
 :root {
-    /* Professional corporate color scheme */
-    --primary-color: #003d82;       /* Deep corporate blue */
-    --primary-light: #0052a3;       /* Lighter blue for hover states */
-    --secondary-color: #c8102e;     /* Professional red accent */
-    --dark-color: #1a1a1a;          /* Deep charcoal for backgrounds */
-    --darker-color: #0d0d0d;        /* Darker for contrasts */
-    --light-color: #ffffff;         /* Pure white for light sections */
-    --accent-color: #f0f0f0;        /* Light gray accent */
-    --success-color: #28a745;       /* Professional green */
-    --text-dark: #2c2c2c;           /* Dark gray for text */
-    --text-light: #ffffff;          /* White for text on dark backgrounds */
-    --text-muted: #6c757d;          /* Muted gray text */
-    --border-color: #dee2e6;        /* Subtle border color */
+    /* Professional solid color scheme - Dark Blue, Black, White */
+    --primary-color: #002244;       /* Solid dark blue */
+    --primary-light: #003366;       /* Slightly lighter dark blue */
+    --secondary-color: #000000;     /* Solid black */
+    --dark-color: #000000;          /* Solid black */
+    --darker-color: #000000;        /* Solid black */
+    --light-color: #ffffff;         /* Pure white */
+    --accent-color: #002244;        /* Dark blue accent */
+    --success-color: #002244;       /* Dark blue for success */
+    --text-dark: #000000;           /* Solid black for text */
+    --text-light: #ffffff;          /* Pure white for text on dark */
+    --text-muted: #555555;          /* Medium gray text */
+    --border-color: #e0e0e0;        /* Light gray border */
     --shadow-color: rgba(0, 0, 0, 0.1); /* Subtle shadow */
     --card-bg: #ffffff;             /* Solid white card background */
 
@@ -95,15 +95,15 @@ h1 {
     letter-spacing: 1px;
 }
 
-/* Corporate underline for headings */
+/* Professional underline for headings */
 h2:after {
     content: '';
     position: absolute;
     width: 0;
-    height: 3px;
+    height: 4px;
     bottom: -10px;
     left: 50%;
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
     transition: width var(--transition-medium), left var(--transition-medium);
 }
 
@@ -206,19 +206,19 @@ a.animated-link:hover:after {
     border-color: var(--text-light);
 }
 
-/* Navigation - Corporate style */
+/* Navigation - Professional solid black */
 .navbar {
     padding: 20px 0;
     transition: all var(--transition-medium);
-    background-color: var(--dark-color) !important;
-    border-bottom: 3px solid var(--secondary-color);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: var(--secondary-color) !important;
+    border-bottom: 4px solid var(--primary-color);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 }
 
 .navbar.scrolled {
-    background-color: var(--dark-color) !important;
+    background-color: var(--secondary-color) !important;
     padding: 15px 0;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
 .navbar-brand {
@@ -258,7 +258,7 @@ a.animated-link:hover:after {
     text-transform: uppercase;
 }
 
-/* Corporate underline effect */
+/* Professional underline effect */
 .navbar-dark .navbar-nav .nav-link:before {
     content: '';
     position: absolute;
@@ -266,7 +266,7 @@ a.animated-link:hover:after {
     left: 50%;
     width: 0;
     height: 3px;
-    background: var(--secondary-color);
+    background: var(--primary-color);
     transition: all var(--transition-medium);
     opacity: 0;
     transform: translateX(-50%);
@@ -283,14 +283,14 @@ a.animated-link:hover:after {
     color: var(--text-light);
 }
 
-/* Corporate button in navbar */
+/* Professional button in navbar */
 .navbar .btn-primary {
-    background: var(--secondary-color);
-    border: none;
+    background: var(--primary-color);
+    border: 2px solid var(--text-light);
     padding: 10px 24px;
     font-size: 0.9rem;
     letter-spacing: 0.5px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: none;
     color: var(--text-light);
     border-radius: 0;
     transition: all var(--transition-medium);
@@ -298,13 +298,14 @@ a.animated-link:hover:after {
 }
 
 .navbar .btn-primary:hover {
-    background: #a00d25;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    transform: translateY(-2px);
-    color: var(--text-light);
+    background: var(--text-light);
+    box-shadow: none;
+    transform: translateY(0);
+    color: var(--primary-color);
+    border-color: var(--text-light);
 }
 
-/* Hero Section - Corporate style */
+/* Hero Section - Professional solid dark blue */
 .hero-section {
     min-height: 85vh;
     display: flex;
@@ -315,7 +316,7 @@ a.animated-link:hover:after {
     padding: 100px 0;
     margin-top: -76px;
     padding-top: 176px;
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+    background: var(--primary-color);
 }
 
 .hero-section .container {
@@ -334,7 +335,7 @@ a.animated-link:hover:after {
 }
 
 .hero-section h1 span {
-    color: var(--secondary-color);
+    color: var(--text-light);
 }
 
 .hero-section p {
@@ -352,19 +353,19 @@ a.animated-link:hover:after {
     padding: 12px 28px;
 }
 
-/* Corporate hero buttons */
+/* Professional hero buttons */
 .hero-section .btn-primary {
-    background: var(--secondary-color);
+    background: var(--text-light);
     border: none;
-    color: var(--text-light);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    color: var(--primary-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     transition: all var(--transition-medium);
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .hero-section .btn-primary:hover {
-    background: #a00d25;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    background: var(--secondary-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     transform: translateY(-2px);
     color: var(--text-light);
 }
@@ -385,9 +386,9 @@ a.animated-link:hover:after {
     color: var(--primary-color);
 }
 
-/* Page Header - Corporate professional */
+/* Page Header - Solid dark blue */
 .page-header {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+    background: var(--primary-color);
     padding: 100px 0 60px;
     margin-bottom: 60px;
     color: var(--text-light);
@@ -417,27 +418,27 @@ a.animated-link:hover:after {
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Service Cards - Corporate style */
+/* Service Cards - Professional solid style */
 .service-card {
-    border: none;
+    border: 1px solid var(--border-color);
     border-radius: 0;
     overflow: hidden;
     transition: all var(--transition-medium);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     position: relative;
     background-color: var(--card-bg);
     margin-bottom: 30px;
-    border-top: 4px solid var(--primary-color);
+    border-top: 5px solid var(--primary-color);
 }
 
-/* Corporate border effect */
+/* Professional border effect */
 .service-card:before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
+    height: 5px;
     background: var(--primary-color);
     z-index: 1;
     transition: background var(--transition-medium);
@@ -445,7 +446,8 @@ a.animated-link:hover:after {
 
 .service-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    border-color: var(--primary-color);
 }
 
 /* Portfolio-style image container */
@@ -472,7 +474,7 @@ a.animated-link:hover:after {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(0, 61, 130, 0.3), rgba(0, 61, 130, 0.7));
+    background: linear-gradient(to bottom, rgba(0, 34, 68, 0.3), rgba(0, 34, 68, 0.7));
     opacity: 0.7;
     transition: opacity var(--transition-medium);
 }
@@ -490,8 +492,8 @@ a.animated-link:hover:after {
 }
 
 .service-card .card-title {
-    color: var(--dark-color);
-    font-weight: 600;
+    color: var(--text-dark);
+    font-weight: 700;
     position: relative;
     padding-bottom: 15px;
     margin-bottom: 15px;
@@ -500,15 +502,15 @@ a.animated-link:hover:after {
     letter-spacing: 0;
 }
 
-/* Corporate underline */
+/* Professional underline */
 .service-card .card-title:after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 40px;
-    height: 3px;
-    background: var(--secondary-color);
+    width: 50px;
+    height: 4px;
+    background: var(--primary-color);
     transition: width var(--transition-medium);
 }
 
@@ -541,7 +543,7 @@ a.animated-link:hover:after {
 .service-card:hover .service-icon {
     transform: scale(1.05);
     background: var(--secondary-color);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Process List - Security-focused, clean */
@@ -615,14 +617,14 @@ a.animated-link:hover:after {
     color: var(--secondary-color);
 }
 
-/* Footer - Corporate style */
+/* Footer - Solid black */
 footer {
-    background-color: var(--dark-color);
+    background-color: var(--secondary-color);
     position: relative;
     color: rgba(255, 255, 255, 0.9);
     padding-top: 4rem;
     padding-bottom: 2rem;
-    border-top: 4px solid var(--secondary-color);
+    border-top: 4px solid var(--primary-color);
 }
 
 /* Corporate accent line - removed */
@@ -640,15 +642,15 @@ footer h5 {
     display: inline-block;
 }
 
-/* Corporate underline for headings */
+/* Professional underline for headings */
 footer h5:after {
     content: '';
     position: absolute;
     bottom: -8px;
     left: 0;
-    width: 40px;
+    width: 50px;
     height: 3px;
-    background: var(--secondary-color);
+    background: var(--primary-color);
 }
 
 footer a {
@@ -667,7 +669,7 @@ footer a:after {
     left: 0;
     width: 0;
     height: 2px;
-    background: var(--secondary-color);
+    background: var(--text-light);
     transition: width var(--transition-medium);
     opacity: 1;
 }
@@ -677,7 +679,7 @@ footer a:hover:after {
 }
 
 footer a:hover {
-    color: var(--secondary-color);
+    color: var(--text-light);
     text-decoration: none;
     transform: translateX(0);
 }
@@ -714,11 +716,11 @@ footer .social-icons a {
 }
 
 footer .social-icons a:hover {
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
     transform: translateY(-3px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
     color: var(--text-light);
-    border-color: var(--secondary-color);
+    border-color: var(--primary-color);
 }
 
 footer .contact-info li {
@@ -730,7 +732,7 @@ footer .contact-info li {
 
 footer .contact-info i {
     margin-right: 12px;
-    color: var(--secondary-color);
+    color: var(--primary-color);
     margin-top: 4px;
 }
 
@@ -741,7 +743,7 @@ footer .copyright {
 }
 
 footer .copyright a {
-    color: var(--secondary-color);
+    color: var(--text-light);
 }
 
 footer .copyright a:hover {
@@ -901,7 +903,7 @@ section:nth-child(odd) {
     transition: all var(--transition-medium);
 }
 
-/* Feature Icons - Corporate */
+/* Feature Icons - Professional solid */
 .feature-icon {
     color: var(--text-light);
     margin-bottom: 20px;
@@ -915,11 +917,13 @@ section:nth-child(odd) {
     justify-content: center;
     margin: 0 auto 20px;
     font-size: 2rem;
+    border: 3px solid var(--secondary-color);
 }
 
 .card:hover .feature-icon {
     transform: scale(1.05);
     background-color: var(--secondary-color);
+    border-color: var(--primary-color);
 }
 
 /* Animated elements - More subtle */
@@ -931,14 +935,14 @@ section:nth-child(odd) {
     transform: translateY(-3px); /* More subtle lift */
 }
 
-/* Call to action section - Corporate style */
+/* Call to action section - Solid black */
 .cta-section {
     position: relative;
-    background: var(--primary-color);
+    background: var(--secondary-color);
     color: var(--text-light);
     padding: 5rem 0;
-    border-top: none;
-    border-bottom: 4px solid var(--secondary-color);
+    border-top: 4px solid var(--primary-color);
+    border-bottom: none;
 }
 
 /* Corporate overlay - removed */
@@ -994,7 +998,7 @@ section:nth-child(odd) {
     }
 }
 
-/* Preloader - Corporate */
+/* Preloader - Solid dark blue */
 .preloader {
     position: fixed;
     top: 0;
@@ -1037,19 +1041,19 @@ section:nth-child(odd) {
     right: -4px;
     bottom: -4px;
     border: 4px solid transparent;
-    border-top-color: var(--secondary-color);
+    border-top-color: var(--text-light);
     border-radius: 50%;
     animation: rotate 1.2s linear reverse infinite;
 }
 
-/* Back to top button - Corporate */
+/* Back to top button - Professional solid */
 .back-to-top {
     position: fixed;
     bottom: 30px;
     right: 30px;
     width: 50px;
     height: 50px;
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
     color: #fff;
     border-radius: 0;
     display: flex;
@@ -1060,7 +1064,8 @@ section:nth-child(odd) {
     visibility: hidden;
     transition: all var(--transition-medium);
     z-index: 99;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    border: 2px solid var(--secondary-color);
 }
 
 .back-to-top.active {
@@ -1069,9 +1074,10 @@ section:nth-child(odd) {
 }
 
 .back-to-top:hover {
-    background-color: #a00d25;
+    background-color: var(--secondary-color);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-color: var(--text-light);
 }
 
 .back-to-top i {
@@ -1242,46 +1248,48 @@ section:nth-child(odd) {
     color: var(--text-light);
     font-size: 1.2rem;
     transition: all var(--transition-medium);
-    border: none;
+    border: 2px solid var(--secondary-color);
 }
 
 .contact-item:hover .contact-icon {
     transform: scale(1.05);
     background: var(--secondary-color);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+    border-color: var(--text-light);
 }
 
-/* Corporate card */
+/* Professional solid card */
 .glass-card {
     background-color: var(--card-bg);
     border-radius: 0;
     overflow: hidden;
     transition: all var(--transition-medium);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     position: relative;
-    border: none;
+    border: 1px solid var(--border-color);
     margin-bottom: 30px;
-    border-top: 4px solid var(--primary-color);
+    border-top: 5px solid var(--primary-color);
 }
 
 .glass-card:hover {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
     transform: translateY(-2px);
+    border-color: var(--primary-color);
 }
 
-/* Corporate button */
+/* Professional solid button */
 .glow-button {
-    background: var(--secondary-color);
+    background: var(--primary-color);
     border: none;
     color: var(--text-light);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     transition: all var(--transition-medium);
     font-weight: 600;
 }
 
 .glow-button:hover {
-    background: #a00d25;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    background: var(--secondary-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
     transform: translateY(-2px);
     color: var(--text-light);
 }
