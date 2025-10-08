@@ -46,6 +46,17 @@ body {
     position: relative;
 }
 
+/* Default paragraph text */
+p {
+    color: var(--text-dark);
+}
+
+/* Override text-white class on light backgrounds */
+.particles-section .text-white,
+section .text-white {
+    color: var(--text-dark) !important;
+}
+
 /* Animation for elements that fade in when scrolled into view - more subtle */
 .fade-in {
     opacity: 0;
@@ -85,9 +96,20 @@ body {
 h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
     position: relative;
-    color: var(--dark-color);
+    color: var(--text-dark);
     margin-bottom: 1.2rem;
     letter-spacing: 0;
+}
+
+/* Override white text in cards */
+.card h1, .card h2, .card h3, .card h4, .card h5, .card h6,
+.glass-card h1, .glass-card h2, .glass-card h3, .glass-card h4, .glass-card h5, .glass-card h6 {
+    color: var(--text-dark) !important;
+}
+
+.card .text-white,
+.glass-card .text-white {
+    color: var(--text-dark) !important;
 }
 
 h1 {
@@ -519,9 +541,17 @@ a.animated-link:hover:after {
 }
 
 .service-card .card-text {
-    color: var(--text-muted);
+    color: var(--text-dark);
     font-size: 1rem;
     line-height: 1.8;
+}
+
+.service-card p {
+    color: var(--text-dark) !important;
+}
+
+.service-card .list-unstyled li {
+    color: var(--text-dark) !important;
 }
 
 /* Service icon */
@@ -752,7 +782,20 @@ footer .copyright a:hover {
 
 /* Gradient text for headings */
 .gradient-text {
-    color: var(--primary-color);
+    color: var(--primary-color) !important;
+}
+
+/* Dark backgrounds get white text */
+.hero-section .gradient-text,
+.page-header .gradient-text,
+.cta-section .gradient-text,
+footer .gradient-text {
+    color: var(--text-light) !important;
+}
+
+/* Light backgrounds get dark blue text */
+section.particles-section .gradient-text {
+    color: var(--primary-color) !important;
 }
 
 /* Section spacing */
@@ -770,18 +813,39 @@ section.py-5 {
     line-height: 1.8;
 }
 
+.glass-card .list-unstyled li {
+    color: var(--text-dark);
+}
+
+/* Fix for "Why Choose Us" section cards */
+.glass-card .card-title,
+.glass-card h5 {
+    color: var(--text-dark) !important;
+}
+
+.glass-card p {
+    color: var(--text-dark) !important;
+}
+
+/* Feature cards text */
+.feature-card h5,
+.feature-card p {
+    color: var(--text-dark) !important;
+}
+
 /* Text primary color override */
 .text-primary {
     color: var(--primary-color) !important;
 }
 
-/* Glass card content text color */
+/* Card content text color */
 .glass-card h3,
 .glass-card h4,
 .glass-card h5,
 .glass-card h6,
-.glass-card p {
-    color: var(--text-dark);
+.glass-card p,
+.glass-card .card-title {
+    color: var(--text-dark) !important;
 }
 
 .glass-card .gradient-text {
@@ -795,16 +859,64 @@ section.py-5 {
 
 /* Lead text styling */
 .lead {
-    color: var(--text-muted);
+    color: var(--text-dark);
     font-size: 1.15rem;
 }
 
+/* Ensure proper text colors on white backgrounds */
+section.particles-section h1,
+section.particles-section h2,
+section.particles-section h3,
+section.particles-section h4,
+section.particles-section h5,
+section.particles-section h6,
+section.particles-section p,
+section.particles-section .lead {
+    color: var(--text-dark);
+}
+
+/* Hero and header sections with dark backgrounds keep white text */
+.hero-section h1,
+.hero-section h2,
+.hero-section h3,
+.hero-section h4,
+.hero-section h5,
+.hero-section h6,
+.hero-section p,
+.hero-section .lead,
+.page-header h1,
+.page-header h2,
+.page-header h3,
+.page-header h4,
+.page-header h5,
+.page-header h6,
+.page-header p,
+.page-header .lead {
+    color: var(--text-light) !important;
+}
+
+/* CTA section with dark background */
+.cta-section h1,
+.cta-section h2,
+.cta-section h3,
+.cta-section h4,
+.cta-section h5,
+.cta-section h6,
+.cta-section p,
+.cta-section .lead {
+    color: var(--text-light) !important;
+}
+
 /* Section background variations */
-section:nth-child(even) {
+section.particles-section {
+    background-color: #f8f9fa;
+}
+
+section:nth-child(even).particles-section {
     background-color: #ffffff;
 }
 
-section:nth-child(odd) {
+section:nth-child(odd).particles-section {
     background-color: #f8f9fa;
 }
 
@@ -1390,7 +1502,11 @@ section:nth-child(odd) {
 .process-step-title {
     font-weight: 600;
     margin-bottom: 0.5rem;
-    color: var(--dark-color);
+    color: var(--text-dark);
+}
+
+.process-step-content p {
+    color: var(--text-dark);
 }
 
 /* Solid section backgrounds */
