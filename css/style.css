@@ -12,26 +12,26 @@
 
 /* Global Styles */
 :root {
-    /* Modern Sleek Color Palette - 2024 Design Trends */
-    --primary-color: #0f1419;       /* Rich charcoal - modern dark */
-    --primary-light: #1a2332;       /* Dark slate - sophisticated */
+    /* Professional Color Scheme - Enhanced Contrast */
+    --primary-color: #002244;       /* Dark blue - maintains brand */
+    --primary-light: #003366;       /* Lighter dark blue */
     --secondary-color: #000000;     /* Pure black */
-    --accent-color: #0066ff;        /* Electric blue - modern accent */
-    --accent-light: #4d9de0;        /* Soft blue - lighter accent */
-    --success-color: #10b981;       /* Modern green */
+    --accent-color: #0066cc;        /* Professional blue accent */
+    --accent-light: #4d9de0;        /* Soft blue */
+    --success-color: #28a745;       /* Standard green */
     --light-color: #ffffff;         /* Pure white */
-    --text-dark: #1a1a1a;           /* Rich black - better contrast */
-    --text-medium: #6b7280;         /* Modern gray */
-    --text-light: #f8fafc;          /* Clean white */
-    --text-muted: #64748b;          /* Slate gray */
-    --border-color: #e2e8f0;        /* Light slate border */
-    --shadow-color: rgba(15, 20, 25, 0.08); /* Subtle modern shadow */
+    --text-dark: #000000;           /* Pure black for contrast */
+    --text-medium: #555555;         /* Medium gray */
+    --text-light: #ffffff;          /* Pure white */
+    --text-muted: #777777;          /* Muted gray */
+    --border-color: #e0e0e0;        /* Light gray border */
+    --shadow-color: rgba(0, 0, 0, 0.1); /* Subtle shadow */
     --card-bg: #ffffff;             /* Clean white */
 
-    /* Modern Transitions */
-    --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-medium: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Transitions */
+    --transition-slow: 0.4s ease;
+    --transition-medium: 0.3s ease;
+    --transition-fast: 0.2s ease;
 }
 
 body {
@@ -40,13 +40,10 @@ body {
     line-height: 1.6;
     padding-top: 76px;
     overflow-x: hidden;
-    background-color: var(--text-light);
-    letter-spacing: -0.005em;
+    background-color: #f8f9fa;
+    letter-spacing: 0;
     font-weight: 400;
-    font-size: 1.125rem; /* Modern larger base font size */
     position: relative;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
 
 /* Default paragraph text */
@@ -118,9 +115,7 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
     font-weight: 700;
-    letter-spacing: -0.025em;
-    font-size: 4rem;
-    line-height: 1.05;
+    letter-spacing: 1px;
 }
 
 /* Professional underline for headings */
@@ -321,16 +316,16 @@ a.animated-link:hover:after {
     outline-offset: 2px;
 }
 
-/* Professional button in navbar */
+/* Modern navbar button */
 .navbar .btn-primary {
-    background: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
     border: 2px solid var(--text-light);
-    padding: 12px 28px;
+    padding: 14px 32px;
     font-size: 0.85rem;
-    letter-spacing: 0.8px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.025em;
+    box-shadow: 0 4px 20px rgba(15, 20, 25, 0.2);
     color: var(--text-light);
-    border-radius: 0;
+    border-radius: 10px;
     transition: all var(--transition-medium);
     font-weight: 600;
 }
@@ -500,9 +495,10 @@ a.animated-link:hover:after {
 }
 
 .service-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    border-color: var(--primary-color);
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 25px 60px rgba(15, 20, 25, 0.18);
+    border-color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.98);
 }
 
 .service-card {
@@ -847,6 +843,7 @@ footer .copyright a:hover {
     color: var(--primary-color) !important;
 }
 
+
 /* Dark backgrounds get white text */
 .hero-section .gradient-text,
 .page-header .gradient-text,
@@ -919,13 +916,10 @@ section.py-5 {
     color: var(--text-muted);
 }
 
-/* Modern lead text styling */
+/* Lead text styling */
 .lead {
-    color: var(--text-medium);
-    font-size: 1.375rem;
-    font-weight: 400;
-    line-height: 1.5;
-    letter-spacing: -0.005em;
+    color: var(--text-dark);
+    font-size: 1.15rem;
 }
 
 /* Hero and header sections with dark backgrounds keep white text - HIGHEST PRIORITY */
@@ -1016,10 +1010,10 @@ section:nth-child(odd).particles-section {
 }
 
 .form-control:focus {
-    box-shadow: 0 0 0 3px rgba(0, 34, 68, 0.1);
-    border-color: var(--primary-color);
-    transform: translateY(-1px);
-    background-color: #fff;
+    box-shadow: 0 0 0 4px rgba(0, 102, 255, 0.1);
+    border-color: var(--accent-color);
+    transform: translateY(-2px) scale(1.01);
+    background: rgba(255, 255, 255, 0.98);
     outline: none;
     transition: all var(--transition-fast);
 }
@@ -1038,8 +1032,10 @@ section:nth-child(odd).particles-section {
 .form-label {
     font-weight: 600;
     font-size: 0.95rem;
-    color: var(--dark-color);
-    margin-bottom: 0.6rem;
+    color: var(--text-medium);
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.01em;
+    transition: color var(--transition-fast);
 }
 
 .form-check-input {
@@ -1131,7 +1127,6 @@ section:nth-child(odd).particles-section {
 /* Animated elements - More subtle */
 .animated-element {
     transition: all var(--transition-medium);
-    will-change: transform;
 }
 
 .animated-element:hover {
@@ -1249,16 +1244,16 @@ section:nth-child(odd).particles-section {
     animation: rotate 1.2s linear reverse infinite;
 }
 
-/* Back to top button - Professional solid */
+/* Modern back to top button */
 .back-to-top {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    width: 50px;
-    height: 50px;
-    background-color: var(--primary-color);
-    color: #fff;
-    border-radius: 0;
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+    color: var(--text-light);
+    border-radius: 16px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1267,8 +1262,8 @@ section:nth-child(odd).particles-section {
     visibility: hidden;
     transition: all var(--transition-medium);
     z-index: 99;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-    border: 2px solid var(--secondary-color);
+    box-shadow: 0 8px 25px rgba(15, 20, 25, 0.2);
+    border: none;
 }
 
 .back-to-top.active {
@@ -1277,10 +1272,9 @@ section:nth-child(odd).particles-section {
 }
 
 .back-to-top:hover {
-    background-color: var(--secondary-color);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    border-color: var(--text-light);
+    background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-color) 100%);
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 12px 32px rgba(15, 20, 25, 0.3);
 }
 
 .back-to-top i {
@@ -1588,9 +1582,10 @@ section:nth-child(odd).particles-section {
     }
 
     .btn {
-        padding: 10px 20px;
-        font-size: 0.8rem;
-        letter-spacing: 0.5px;
+        padding: 12px 24px;
+        font-size: 0.85rem;
+        letter-spacing: 0.025em;
+        border-radius: 10px;
     }
 
     .service-card {
@@ -1750,6 +1745,7 @@ section:nth-child(odd).particles-section {
     }
 }
 
+
 /* Corporate contact items */
 .contact-item {
     display: flex;
@@ -1798,9 +1794,10 @@ section:nth-child(odd).particles-section {
 }
 
 .glass-card:hover {
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
-    transform: translateY(-5px);
-    border-color: var(--primary-color);
+    box-shadow: 0 20px 60px rgba(15, 20, 25, 0.15);
+    transform: translateY(-8px) scale(1.02);
+    border-color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.98);
 }
 
 /* Professional solid button */
@@ -1935,12 +1932,13 @@ section:nth-child(odd).particles-section {
     color: var(--text-dark);
 }
 
-/* Modern section backgrounds */
-.particles-section {
+/* Section background variations */
+section.particles-section {
     position: relative;
     z-index: 1;
-    background-color: var(--text-light);
+    background-color: #f8f9fa;
 }
+
 
 #particles-js {
     display: none;
