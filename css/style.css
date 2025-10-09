@@ -12,26 +12,26 @@
 
 /* Global Styles */
 :root {
-    /* Professional solid color scheme - Dark Blue, Black, White */
-    --primary-color: #002244;       /* Solid dark blue */
-    --primary-light: #003366;       /* Slightly lighter dark blue */
-    --secondary-color: #000000;     /* Solid black */
-    --dark-color: #000000;          /* Solid black */
-    --darker-color: #000000;        /* Solid black */
+    /* Modern Sleek Color Palette - 2024 Design Trends */
+    --primary-color: #0f1419;       /* Rich charcoal - modern dark */
+    --primary-light: #1a2332;       /* Dark slate - sophisticated */
+    --secondary-color: #000000;     /* Pure black */
+    --accent-color: #0066ff;        /* Electric blue - modern accent */
+    --accent-light: #4d9de0;        /* Soft blue - lighter accent */
+    --success-color: #10b981;       /* Modern green */
     --light-color: #ffffff;         /* Pure white */
-    --accent-color: #002244;        /* Dark blue accent */
-    --success-color: #002244;       /* Dark blue for success */
-    --text-dark: #000000;           /* Solid black for text */
-    --text-light: #ffffff;          /* Pure white for text on dark */
-    --text-muted: #555555;          /* Medium gray text */
-    --border-color: #e0e0e0;        /* Light gray border */
-    --shadow-color: rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    --card-bg: #ffffff;             /* Solid white card background */
+    --text-dark: #1a1a1a;           /* Rich black - better contrast */
+    --text-medium: #6b7280;         /* Modern gray */
+    --text-light: #f8fafc;          /* Clean white */
+    --text-muted: #64748b;          /* Slate gray */
+    --border-color: #e2e8f0;        /* Light slate border */
+    --shadow-color: rgba(15, 20, 25, 0.08); /* Subtle modern shadow */
+    --card-bg: #ffffff;             /* Clean white */
 
-    /* Transitions */
-    --transition-slow: 0.4s ease;
-    --transition-medium: 0.3s ease;
-    --transition-fast: 0.2s ease;
+    /* Modern Transitions */
+    --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-medium: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
@@ -40,9 +40,10 @@ body {
     line-height: 1.6;
     padding-top: 76px;
     overflow-x: hidden;
-    background-color: #f8f9fa;
-    letter-spacing: 0.01em;
+    background-color: var(--text-light);
+    letter-spacing: -0.005em;
     font-weight: 400;
+    font-size: 1.125rem; /* Modern larger base font size */
     position: relative;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -117,9 +118,9 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
     font-weight: 700;
-    letter-spacing: -0.02em;
-    font-size: 3.5rem;
-    line-height: 1.1;
+    letter-spacing: -0.025em;
+    font-size: 4rem;
+    line-height: 1.05;
 }
 
 /* Professional underline for headings */
@@ -545,7 +546,7 @@ a.animated-link:hover:after {
     position: relative;
     z-index: 1;
     transition: all var(--transition-medium);
-    padding: 2rem;
+    padding: 2.5rem;
     border-top: none;
 }
 
@@ -859,13 +860,13 @@ section.particles-section .gradient-text {
     color: var(--primary-color) !important;
 }
 
-/* Section spacing */
+/* Modern section spacing */
 section {
-    padding: 100px 0;
+    padding: 120px 0;
 }
 
 section.py-5 {
-    padding: 100px 0 !important;
+    padding: 120px 0 !important;
 }
 
 /* Professional list items */
@@ -918,13 +919,13 @@ section.py-5 {
     color: var(--text-muted);
 }
 
-/* Lead text styling */
+/* Modern lead text styling */
 .lead {
-    color: var(--text-dark);
-    font-size: 1.25rem;
-    font-weight: 300;
+    color: var(--text-medium);
+    font-size: 1.375rem;
+    font-weight: 400;
     line-height: 1.5;
-    letter-spacing: 0.01em;
+    letter-spacing: -0.005em;
 }
 
 /* Hero and header sections with dark backgrounds keep white text - HIGHEST PRIORITY */
@@ -1934,11 +1935,11 @@ section:nth-child(odd).particles-section {
     color: var(--text-dark);
 }
 
-/* Solid section backgrounds */
+/* Modern section backgrounds */
 .particles-section {
     position: relative;
     z-index: 1;
-    background-color: #f8f9fa;
+    background-color: var(--text-light);
 }
 
 #particles-js {
