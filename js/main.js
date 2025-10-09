@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Form validation for contact form
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
 
             // Simple form validation
@@ -149,9 +149,41 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             if (isValid) {
-                // In a real application, you would send the form data to a server
-                // For this demo, we'll just show a success message
-                showFormSuccess();
+                // Show loading state
+                const submitBtn = contactForm.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                submitBtn.disabled = true;
+
+                try {
+                    const response = await fetch('/api/contact', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            name: name.value.trim(),
+                            email: email.value.trim(),
+                            message: message.value.trim()
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                        showFormSuccess(data.message);
+                        contactForm.reset();
+                    } else {
+                        showFormError(data.message);
+                    }
+                } catch (error) {
+                    console.error('Contact form submission error:', error);
+                    showFormError('Failed to send message. Please try again later.');
+                } finally {
+                    // Reset button state
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }
             }
         });
     }
@@ -173,7 +205,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Helper function to show form success message
-    function showFormSuccess() {
+    function showFormSuccess(message = 'Message sent successfully! We will get back to you within 24 hours.') {
         const form = document.getElementById('contactForm');
         const formContainer = form.parentElement;
 
@@ -184,8 +216,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const successMessage = document.createElement('div');
         successMessage.className = 'alert alert-success';
         successMessage.innerHTML = `
-            <h4 class="alert-heading">Message Sent!</h4>
-            <p>Thank you for contacting 1 Call Rapid Response. We have received your message and will get back to you shortly.</p>
+            <h4 class="alert-heading"><i class="fas fa-check-circle"></i> Message Sent!</h4>
+            <p>${message}</p>
             <hr>
             <p class="mb-0">Our team typically responds within 24 hours.</p>
         `;
@@ -196,11 +228,42 @@ document.addEventListener('DOMContentLoaded', function() {
         // Scroll to the success message
         successMessage.scrollIntoView({ behavior: 'smooth' });
 
-        // Reset form after 5 seconds
+        // Reset form after 8 seconds
         setTimeout(() => {
             form.reset();
             successMessage.remove();
             form.style.display = 'block';
+        }, 8000);
+    }
+
+    // Helper function to show form error message
+    function showFormError(message) {
+        const form = document.getElementById('contactForm');
+        const formContainer = form.parentElement;
+
+        // Remove any existing error messages
+        const existingError = formContainer.querySelector('.alert-danger');
+        if (existingError) {
+            existingError.remove();
+        }
+
+        // Create error message
+        const errorMessage = document.createElement('div');
+        errorMessage.className = 'alert alert-danger';
+        errorMessage.innerHTML = `
+            <h4 class="alert-heading"><i class="fas fa-exclamation-triangle"></i> Error</h4>
+            <p>${message}</p>
+        `;
+
+        // Add error message before the form
+        formContainer.insertBefore(errorMessage, form);
+
+        // Scroll to the error message
+        errorMessage.scrollIntoView({ behavior: 'smooth' });
+
+        // Remove error message after 5 seconds
+        setTimeout(() => {
+            errorMessage.remove();
         }, 5000);
     }
 

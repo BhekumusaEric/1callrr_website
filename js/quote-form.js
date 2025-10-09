@@ -126,22 +126,99 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // Handle form submission
-        document.getElementById('quoteForm').addEventListener('submit', function(e) {
+        document.getElementById('quoteForm').addEventListener('submit', async function(e) {
             e.preventDefault();
 
-            // In a real application, you would send the form data to a server
-            // For this demo, we'll just show a success message
-            document.getElementById('quoteForm').style.display = 'none';
-            document.getElementById('quoteFormSuccess').style.display = 'block';
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+            submitBtn.disabled = true;
 
-            // Reset form after 5 seconds and close modal
-            setTimeout(() => {
-                document.getElementById('quoteForm').reset();
-                document.getElementById('quoteForm').style.display = 'block';
-                document.getElementById('quoteFormSuccess').style.display = 'none';
-                quoteModal.hide();
-            }, 5000);
+            try {
+                // Get form data
+                const formData = {
+                    name: document.getElementById('quoteName').value.trim(),
+                    email: document.getElementById('quoteEmail').value.trim(),
+                    phone: document.getElementById('quotePhone').value.trim(),
+                    company: document.getElementById('quoteCompany').value.trim() || null,
+                    service: document.getElementById('serviceType').value === 'Other'
+                        ? document.getElementById('otherService').value.trim()
+                        : document.getElementById('serviceType').value,
+                    message: document.getElementById('requirements').value.trim(),
+                    location: document.getElementById('location').value === 'Other'
+                        ? document.getElementById('otherLocation').value.trim()
+                        : document.getElementById('location').value,
+                    urgency: 'Standard' // Could be enhanced with urgency selection
+                };
+
+                const response = await fetch('/api/quote', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    // Show success message
+                    document.getElementById('quoteForm').style.display = 'none';
+                    const successDiv = document.getElementById('quoteFormSuccess');
+                    successDiv.innerHTML = `
+                        <h4 class="alert-heading"><i class="fas fa-check-circle"></i> Quote Request Submitted!</h4>
+                        <p>${data.message}</p>
+                        <hr>
+                        <p class="mb-0">Our team will prepare a customized solution for your needs.</p>
+                    `;
+                    successDiv.style.display = 'block';
+
+                    // Reset form and close modal after 8 seconds
+                    setTimeout(() => {
+                        document.getElementById('quoteForm').reset();
+                        document.getElementById('quoteForm').style.display = 'block';
+                        successDiv.style.display = 'none';
+                        quoteModal.hide();
+                    }, 8000);
+                } else {
+                    // Show error message
+                    showQuoteFormError(data.message);
+                }
+            } catch (error) {
+                console.error('Quote form submission error:', error);
+                showQuoteFormError('Failed to submit quote request. Please try again later.');
+            } finally {
+                // Reset button state
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
         });
+
+        // Helper function to show quote form error
+        function showQuoteFormError(message) {
+            const form = document.getElementById('quoteForm');
+            const existingError = document.getElementById('quoteFormError');
+
+            if (existingError) {
+                existingError.remove();
+            }
+
+            const errorDiv = document.createElement('div');
+            errorDiv.id = 'quoteFormError';
+            errorDiv.className = 'alert alert-danger mt-3';
+            errorDiv.innerHTML = `
+                <h4 class="alert-heading"><i class="fas fa-exclamation-triangle"></i> Error</h4>
+                <p>${message}</p>
+            `;
+
+            form.appendChild(errorDiv);
+
+            // Remove error after 5 seconds
+            setTimeout(() => {
+                errorDiv.remove();
+            }, 5000);
+        }
     }
 
     // Add click event to all quote buttons
