@@ -1801,16 +1801,18 @@ section:nth-child(odd).particles-section {
 /* Modal styling */
 .modal-content.glass-card {
     background-color: var(--card-bg);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    color: var(--text-light);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: var(--text-dark);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
 }
 
 .modal-header {
-    border-bottom-color: rgba(255, 255, 255, 0.05);
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 34, 68, 0.05);
 }
 
 .modal-footer {
-    border-top-color: rgba(255, 255, 255, 0.05);
+    border-top-color: rgba(0, 0, 0, 0.1);
 }
 
 .modal .form-control, .modal .form-select {
@@ -1826,7 +1828,8 @@ section:nth-child(odd).particles-section {
 }
 
 .modal .form-label {
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--text-dark);
+    font-weight: 600;
 }
 
 .modal .form-select option {
@@ -1834,8 +1837,17 @@ section:nth-child(odd).particles-section {
     color: var(--text-light);
 }
 
-.modal .btn-close-white {
+.modal .modal-body p {
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+}
+
+.modal .btn-close {
     filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+.modal .modal-title {
+    color: var(--text-dark) !important;
 }
 
 /* Toast styling */
