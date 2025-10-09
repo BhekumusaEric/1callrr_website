@@ -564,10 +564,15 @@ a.animated-link:hover:after {
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
-    color: var(--text-light);
+    color: var(--text-light) !important;
     font-size: 1.8rem;
     transition: all var(--transition-medium);
     border: none;
+}
+
+.service-card .service-icon i,
+.service-card .service-icon * {
+    color: var(--text-light) !important;
 }
 
 .service-card:hover .service-icon {
@@ -657,6 +662,21 @@ footer {
     border-top: 4px solid var(--primary-color);
 }
 
+/* All footer text must be white */
+footer *,
+footer h1,
+footer h2,
+footer h3,
+footer h4,
+footer h5,
+footer h6,
+footer p,
+footer span,
+footer a,
+footer li {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
 /* Corporate accent line - removed */
 footer:before {
     display: none;
@@ -741,8 +761,13 @@ footer .social-icons a {
     border-radius: 0;
     margin-right: 10px;
     transition: all var(--transition-medium);
-    color: var(--text-light);
+    color: var(--text-light) !important;
     border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+footer .social-icons a i,
+footer .social-icons a * {
+    color: var(--text-light) !important;
 }
 
 footer .social-icons a:hover {
@@ -863,19 +888,7 @@ section.py-5 {
     font-size: 1.15rem;
 }
 
-/* Ensure proper text colors on white backgrounds */
-section.particles-section h1,
-section.particles-section h2,
-section.particles-section h3,
-section.particles-section h4,
-section.particles-section h5,
-section.particles-section h6,
-section.particles-section p,
-section.particles-section .lead {
-    color: var(--text-dark);
-}
-
-/* Hero and header sections with dark backgrounds keep white text */
+/* Hero and header sections with dark backgrounds keep white text - HIGHEST PRIORITY */
 .hero-section h1,
 .hero-section h2,
 .hero-section h3,
@@ -884,6 +897,7 @@ section.particles-section .lead {
 .hero-section h6,
 .hero-section p,
 .hero-section .lead,
+.hero-section span,
 .page-header h1,
 .page-header h2,
 .page-header h3,
@@ -891,7 +905,17 @@ section.particles-section .lead {
 .page-header h5,
 .page-header h6,
 .page-header p,
-.page-header .lead {
+.page-header .lead,
+.page-header span {
+    color: var(--text-light) !important;
+}
+
+/* Hero section buttons keep their own colors */
+.hero-section .btn-primary {
+    color: var(--primary-color) !important;
+}
+
+.hero-section .btn-outline-light {
     color: var(--text-light) !important;
 }
 
@@ -903,8 +927,27 @@ section.particles-section .lead {
 .cta-section h5,
 .cta-section h6,
 .cta-section p,
-.cta-section .lead {
+.cta-section .lead,
+.cta-section span {
     color: var(--text-light) !important;
+}
+
+/* CTA buttons keep their colors */
+.cta-section .btn {
+    color: inherit;
+}
+
+/* Light background sections have dark text - LOWER PRIORITY */
+section.particles-section:not(.hero-section):not(.page-header):not(.cta-section) h1,
+section.particles-section:not(.hero-section):not(.page-header):not(.cta-section) h2,
+section.particles-section:not(.hero-section):not(.page-header):not(.cta-section) h3,
+section.particles-section:not(.hero-section):not(.page-header):not(.cta-section) h4,
+section.particles-section:not(.hero-section):not(.page-header):not(.cta-section) h5,
+section.particles-section:not(.hero-section):not(.page-header):not(.cta-section) h6,
+section.particles-section:not(.hero-section):not(.page-header):not(.cta-section) p,
+section.particles-section:not(.hero-section):not(.page-header):not(.cta-section) .lead,
+section.particles-section:not(.hero-section):not(.page-header):not(.cta-section) span {
+    color: var(--text-dark);
 }
 
 /* Section background variations */
@@ -1017,7 +1060,7 @@ section:nth-child(odd).particles-section {
 
 /* Feature Icons - Professional solid */
 .feature-icon {
-    color: var(--text-light);
+    color: var(--text-light) !important;
     margin-bottom: 20px;
     transition: all var(--transition-medium);
     background-color: var(--primary-color);
@@ -1030,6 +1073,11 @@ section:nth-child(odd).particles-section {
     margin: 0 auto 20px;
     font-size: 2rem;
     border: 3px solid var(--secondary-color);
+}
+
+.feature-icon i,
+.feature-icon * {
+    color: var(--text-light) !important;
 }
 
 .card:hover .feature-icon {
@@ -1357,10 +1405,15 @@ section:nth-child(odd).particles-section {
     align-items: center;
     justify-content: center;
     margin-right: 20px;
-    color: var(--text-light);
+    color: var(--text-light) !important;
     font-size: 1.2rem;
     transition: all var(--transition-medium);
     border: 2px solid var(--secondary-color);
+}
+
+.contact-icon i,
+.contact-icon * {
+    color: var(--text-light) !important;
 }
 
 .contact-item:hover .contact-icon {
