@@ -488,6 +488,10 @@ a.animated-link:hover:after {
     border-color: var(--primary-color);
 }
 
+.service-card {
+    will-change: transform, box-shadow;
+}
+
 /* Portfolio-style image container */
 .service-card .card-img-top-container {
     position: relative;
@@ -1110,6 +1114,7 @@ section:nth-child(odd).particles-section {
 /* Animated elements - More subtle */
 .animated-element {
     transition: all var(--transition-medium);
+    will-change: transform;
 }
 
 .animated-element:hover {

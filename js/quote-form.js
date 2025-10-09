@@ -45,12 +45,22 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <label for="serviceType" class="form-label">Service Type*</label>
                                 <select class="form-select" id="serviceType" required>
                                     <option value="" selected disabled>Select a service</option>
-                                    <option value="Armed Response">Armed & Unarmed Response</option>
-                                    <option value="Event Security">Event Security</option>
-                                    <option value="VIP Security">VIP Security</option>
-                                    <option value="Offsite Monitoring">Offsite Monitoring</option>
-                                    <option value="Surveillance">Surveillance</option>
-                                    <option value="Disaster Response">Disaster Response</option>
+                                    <optgroup label="Physical Security">
+                                        <option value="Armed Response">Armed & Unarmed Response</option>
+                                        <option value="Event Security">Event Security</option>
+                                        <option value="VIP Security">VIP Security</option>
+                                        <option value="Offsite Monitoring">Offsite Monitoring</option>
+                                        <option value="Surveillance">Surveillance</option>
+                                        <option value="Disaster Response">Disaster Response</option>
+                                    </optgroup>
+                                    <optgroup label="Cyber Security">
+                                        <option value="Network Security">Network Security</option>
+                                        <option value="Data Protection">Data Protection & Encryption</option>
+                                        <option value="Threat Intelligence">Threat Intelligence & Monitoring</option>
+                                        <option value="Security Training">Security Training & Awareness</option>
+                                        <option value="Cloud Security">Cloud Security</option>
+                                        <option value="Compliance">Compliance & Risk Management</option>
+                                    </optgroup>
                                     <option value="Other">Other (Please specify)</option>
                                 </select>
                             </div>
