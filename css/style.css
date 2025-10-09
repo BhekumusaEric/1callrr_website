@@ -423,6 +423,22 @@ a.animated-link:hover:after {
     color: var(--primary-color);
 }
 
+/* Hero image styling */
+.hero-image-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.hero-image-container img {
+    transition: transform 0.5s ease;
+}
+
+.hero-image-container:hover img {
+    transform: scale(1.02);
+}
+
 /* Page Header - Solid dark blue */
 .page-header {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%) !important;
