@@ -6,6 +6,9 @@
 
 // Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
+    // Scroll to top on page load to fix navigation blank space issue
+    window.scrollTo(0, 0);
+
     // Preloader
     const preloader = document.querySelector('.preloader');
     if (preloader) {
