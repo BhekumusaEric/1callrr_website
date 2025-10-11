@@ -246,68 +246,137 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Add scroll hints for mobile sections
-function addScrollHint(container) {
-    const cards = container.children;
-    if (cards.length <= 2) return; // Only show hint if there are more cards than can fit
+// Mobile Carousel System
+class MobileCarousel {
+    constructor(container) {
+        this.container = container;
+        this.track = container.querySelector('.carousel-track');
+        this.cards = Array.from(container.querySelectorAll('.carousel-card'));
+        this.prevBtn = container.querySelector('.carousel-nav.prev');
+        this.nextBtn = container.querySelector('.carousel-nav.next');
+        this.dotsContainer = container.querySelector('.carousel-dots');
 
-    // Check if container has overflow
-    const hasOverflow = container.scrollWidth > container.clientWidth;
-    if (!hasOverflow) return;
+        this.currentIndex = 0;
+        this.isTransitioning = false;
+        this.touchStartX = 0;
+        this.touchEndX = 0;
 
-    // Create scroll hint
-    const hint = document.createElement('div');
-    hint.className = 'scroll-hint';
-    hint.innerHTML = '<i class="fas fa-chevron-right"></i> Scroll';
+        this.init();
+    }
 
-    // Position hint relative to container
-    const containerRect = container.getBoundingClientRect();
-    hint.style.position = 'absolute';
-    hint.style.right = '10px';
-    hint.style.top = '50%';
-    hint.style.transform = 'translateY(-50%)';
+    init() {
+        this.createDots();
+        this.updateButtons();
+        this.updateDots();
+        this.bindEvents();
+    }
 
-    // Add hint to container's parent
-    container.parentElement.style.position = 'relative';
-    container.parentElement.appendChild(hint);
+    createDots() {
+        this.dotsContainer.innerHTML = '';
+        this.cards.forEach((_, index) => {
+            const dot = document.createElement('button');
+            dot.className = 'carousel-dot';
+            dot.addEventListener('click', () => this.goToSlide(index));
+            this.dotsContainer.appendChild(dot);
+        });
+    }
 
-    // Hide hint after first scroll
-    let hasScrolled = false;
-    container.addEventListener('scroll', () => {
-        if (!hasScrolled) {
-            hasScrolled = true;
-            hint.style.opacity = '0';
-            setTimeout(() => hint.remove(), 300);
-        }
-    });
+    updateButtons() {
+        this.prevBtn.classList.toggle('disabled', this.currentIndex === 0);
+        this.nextBtn.classList.toggle('disabled', this.currentIndex === this.cards.length - 1);
+    }
 
-    // Auto-hide hint after 5 seconds if not scrolled
-    setTimeout(() => {
-        if (!hasScrolled) {
-            hint.style.opacity = '0';
-            setTimeout(() => hint.remove(), 300);
-        }
-    }, 5000);
-}
+    updateDots() {
+        const dots = this.dotsContainer.querySelectorAll('.carousel-dot');
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === this.currentIndex);
+        });
+    }
 
-// Add scroll hints to mobile sections
-if (window.innerWidth <= 768) {
-    setTimeout(() => {
-        const mobileSections = [
-            '.why-choose-mobile',
-            '.services-mobile',
-            '.service-highlights-mobile',
-            '.cyber-security-mobile',
-            '.client-experience-mobile'
-        ];
+    bindEvents() {
+        // Navigation buttons
+        this.prevBtn.addEventListener('click', () => this.prevSlide());
+        this.nextBtn.addEventListener('click', () => this.nextSlide());
 
-        mobileSections.forEach(selector => {
-            const section = document.querySelector(selector);
-            if (section) {
-                addScrollHint(section);
+        // Touch events for swipe
+        this.track.addEventListener('touchstart', (e) => {
+            this.touchStartX = e.touches[0].clientX;
+            this.track.classList.add('dragging');
+        });
+
+        this.track.addEventListener('touchmove', (e) => {
+            if (!this.touchStartX) return;
+            e.preventDefault();
+        });
+
+        this.track.addEventListener('touchend', (e) => {
+            if (!this.touchStartX) return;
+
+            this.touchEndX = e.changedTouches[0].clientX;
+            const diffX = this.touchStartX - this.touchEndX;
+
+            this.track.classList.remove('dragging');
+
+            // Minimum swipe distance
+            if (Math.abs(diffX) > 50) {
+                if (diffX > 0) {
+                    this.nextSlide();
+                } else {
+                    this.prevSlide();
+                }
+            }
+
+            this.touchStartX = 0;
+            this.touchEndX = 0;
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                this.prevSlide();
+            } else if (e.key === 'ArrowRight') {
+                this.nextSlide();
             }
         });
-    }, 2000); // Add hints after page load animations
+    }
+
+    goToSlide(index) {
+        if (this.isTransitioning || index === this.currentIndex) return;
+
+        this.isTransitioning = true;
+        this.currentIndex = index;
+
+        this.track.style.transform = `translateX(-${index * 100}%)`;
+
+        this.updateButtons();
+        this.updateDots();
+
+        setTimeout(() => {
+            this.isTransitioning = false;
+        }, 500);
+    }
+
+    nextSlide() {
+        if (this.currentIndex < this.cards.length - 1) {
+            this.goToSlide(this.currentIndex + 1);
+        }
+    }
+
+    prevSlide() {
+        if (this.currentIndex > 0) {
+            this.goToSlide(this.currentIndex - 1);
+        }
+    }
+}
+
+// Initialize carousels on mobile
+if (window.innerWidth <= 768) {
+    setTimeout(() => {
+        const carousels = document.querySelectorAll('.mobile-carousel');
+        carousels.forEach(carousel => {
+            new MobileCarousel(carousel);
+        });
+    }, 1000); // Initialize after page animations
 }
 
 // Add CSS for scroll progress dots and animations

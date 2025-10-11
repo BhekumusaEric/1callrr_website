@@ -588,164 +588,168 @@ footer .row > div:nth-child(3) { animation-delay: 0.4s; }
 
 
 /* Mobile Horizontal Scrolling */
-/* Mobile Horizontal Scrolling - Single Row Display */
+/* Mobile Carousel - Proper Slide Transitions */
 @media (max-width: 768px) {
-    /* Client Experience Cards - Horizontal Scroll */
-    .client-experience-mobile {
-        display: flex;
-        overflow-x: auto;
-        scroll-behavior: smooth;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-        padding: 10px 20px 10px 0;
-        gap: 15px;
+    /* Carousel Container */
+    .mobile-carousel {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
         margin: 0 -20px;
     }
 
-    .client-experience-mobile::-webkit-scrollbar {
-        display: none;
-    }
-
-    .client-experience-mobile .client-experience-card {
-        flex: 0 0 280px;
-        margin-bottom: 0;
-        padding: 20px;
-        margin-right: 0;
-    }
-
-    /* Service Cards - Horizontal Scroll */
-    .services-mobile {
+    .carousel-track {
         display: flex;
-        overflow-x: auto;
-        scroll-behavior: smooth;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-        padding: 10px 20px 10px 0;
-        gap: 15px;
-        margin: 0 -20px;
+        width: 100%;
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        will-change: transform;
     }
 
-    .services-mobile::-webkit-scrollbar {
-        display: none;
-    }
-
-    .services-mobile .service-card {
-        flex: 0 0 280px;
-        margin-bottom: 0;
-        margin-right: 0;
-    }
-
-    /* Service Highlights - Horizontal Scroll */
-    .service-highlights-mobile {
+    /* Individual Cards */
+    .carousel-card {
+        flex: 0 0 100%;
+        width: 100%;
+        padding: 0 20px;
+        box-sizing: border-box;
         display: flex;
-        overflow-x: auto;
-        scroll-behavior: smooth;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-        padding: 10px 20px 10px 0;
-        gap: 12px;
-        margin: 0 -20px;
+        justify-content: center;
     }
 
-    .service-highlights-mobile::-webkit-scrollbar {
-        display: none;
+    .carousel-card .glass-card,
+    .carousel-card .service-card,
+    .carousel-card .client-experience-card,
+    .carousel-card .service-highlight-card {
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
     }
 
-    .service-highlights-mobile .service-highlight-card {
-        flex: 0 0 160px;
-        margin-bottom: 0;
-        padding: 15px;
-        margin-right: 0;
-    }
-
-    /* Cyber Security Cards - Horizontal Scroll */
-    .cyber-security-mobile {
-        display: flex;
-        overflow-x: auto;
-        scroll-behavior: smooth;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-        padding: 10px 20px 10px 0;
-        gap: 15px;
-        margin: 0 -20px;
-    }
-
-    .cyber-security-mobile::-webkit-scrollbar {
-        display: none;
-    }
-
-    .cyber-security-mobile .glass-card {
-        flex: 0 0 250px;
-        margin-bottom: 0;
-        margin-right: 0;
-    }
-
-    /* Why Choose Us Cards - Horizontal Scroll */
-    .why-choose-mobile {
-        display: flex;
-        overflow-x: auto;
-        scroll-behavior: smooth;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-        padding: 10px 20px 10px 0;
-        gap: 15px;
-        margin: 0 -20px;
-    }
-
-    .why-choose-mobile::-webkit-scrollbar {
-        display: none;
-    }
-
-    .why-choose-mobile .glass-card {
-        flex: 0 0 250px;
-        margin-bottom: 0;
-        margin-right: 0;
-    }
-
-    /* Scroll hint indicators */
-    .scroll-hint {
+    /* Navigation Arrows */
+    .carousel-nav {
         position: absolute;
-        right: 10px;
         top: 50%;
         transform: translateY(-50%);
-        background: linear-gradient(135deg, #ffd700, #ffed4e);
-        color: #002244;
-        padding: 8px 12px;
-        border-radius: 20px;
-        font-size: 12px;
-        font-weight: 600;
+        background: linear-gradient(135deg, #002244, #003366);
+        color: #ffd700;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
         display: flex;
         align-items: center;
-        gap: 6px;
+        justify-content: center;
+        cursor: pointer;
         z-index: 10;
-        box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
-        animation: pulse 2s infinite;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
     }
 
-    .scroll-hint i {
-        animation: bounceRight 1.5s infinite;
+    .carousel-nav:hover {
+        background: linear-gradient(135deg, #003366, #004080);
+        transform: translateY(-50%) scale(1.1);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     }
 
-    @keyframes bounceRight {
-        0%, 20%, 50%, 80%, 100% {
+    .carousel-nav.prev {
+        left: 10px;
+    }
+
+    .carousel-nav.next {
+        right: 10px;
+    }
+
+    .carousel-nav.disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+    }
+
+    /* Progress Indicators */
+    .carousel-dots {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+        z-index: 10;
+    }
+
+    .carousel-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        border: 1px solid rgba(255, 215, 0, 0.3);
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .carousel-dot.active {
+        background: #ffd700;
+        transform: scale(1.2);
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+
+    /* Touch/Swipe Styles */
+    .carousel-track.dragging {
+        transition: none;
+        cursor: grabbing;
+    }
+
+    .mobile-carousel {
+        cursor: grab;
+    }
+
+    .mobile-carousel:active {
+        cursor: grabbing;
+    }
+
+    /* Slide Animations */
+    @keyframes slideInFromRight {
+        0% {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        50% {
+            opacity: 0.5;
+        }
+        100% {
             transform: translateX(0);
-        }
-        40% {
-            transform: translateX(3px);
-        }
-        60% {
-            transform: translateX(-3px);
+            opacity: 1;
         }
     }
 
-    @keyframes pulse {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.7; }
+    @keyframes slideOutToLeft {
+        0% {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.5;
+        }
+        100% {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+    }
+
+    /* Loading State */
+    .carousel-loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+        color: #ffd700;
+    }
+
+    .carousel-loading i {
+        animation: spin 1s linear infinite;
+        margin-right: 10px;
+    }
+
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
     }
     
     /* Scroll Indicators */
