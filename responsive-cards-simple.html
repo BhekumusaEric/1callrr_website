@@ -50,6 +50,12 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
+        /* Cards Wrapper - Contains the scrolling area */
+        .cards-wrapper {
+            width: 100%;
+            overflow: hidden; /* Desktop: no scroll */
+        }
+
         /* Desktop: Grid Layout */
         .cards-container {
             display: flex;
@@ -145,22 +151,30 @@
                 margin: 0;
             }
 
-            .cards-container {
-                flex-wrap: nowrap;
+            /* Cards Wrapper - The scrollable container */
+            .cards-wrapper {
                 overflow-x: auto;
                 overflow-y: hidden;
-                scroll-snap-type: x mandatory;
-                padding: 10px 15px 10px 15px;
-                margin: 0;
                 scrollbar-width: none;
                 -ms-overflow-style: none;
-                justify-content: flex-start;
                 width: 100%;
                 box-sizing: border-box;
             }
 
-            .cards-container::-webkit-scrollbar {
+            .cards-wrapper::-webkit-scrollbar {
                 display: none;
+            }
+
+            /* Cards Container - Can be wider than wrapper */
+            .cards-container {
+                flex-wrap: nowrap;
+                scroll-snap-type: x mandatory;
+                padding: 10px 15px 10px 15px;
+                justify-content: flex-start;
+                width: max-content; /* Allow container to be wider than wrapper */
+                min-width: 100%;
+                box-sizing: border-box;
+                gap: 15px;
             }
 
             .card {
@@ -169,12 +183,8 @@
                 width: 280px;
                 min-width: 280px;
                 max-width: 280px;
-                margin-right: 15px;
+                margin-right: 0; /* Gap handles spacing */
                 box-sizing: border-box;
-            }
-
-            .card:last-child {
-                margin-right: 15px;
             }
 
             .card:hover {
@@ -304,7 +314,8 @@
             </button>
         </div>
 
-        <div class="cards-container" id="cardsContainer">
+        <div class="cards-wrapper">
+            <div class="cards-container" id="cardsContainer">
             <div class="card">
                 <div class="card-icon">
                     <i class="fas fa-rocket"></i>
@@ -376,17 +387,19 @@
                 <p>Round-the-clock customer support with multiple channels.</p>
                 <button class="card-btn">Learn More</button>
             </div>
+            </div>
         </div>
 
         <div class="demo-info">
             <h2>How It Works</h2>
 
             <h3>Layout Approach</h3>
-            <p><strong>Flexbox-Based Responsive Design:</strong> Uses pure CSS flexbox for both desktop grid and mobile horizontal scroll layouts. No CSS Grid or JavaScript frameworks required.</p>
+            <p><strong>Wrapper-Based Flexbox Design:</strong> Uses a dedicated scrollable wrapper container for mobile horizontal scrolling, ensuring only the cards section scrolls while the rest of the page remains fixed. Pure CSS flexbox implementation with no frameworks required.</p>
 
             <h3>Desktop Layout (> 768px)</h3>
             <ul>
-                <li><code>display: flex; flex-wrap: wrap</code> creates a responsive grid</li>
+                <li><code>.cards-wrapper</code>: <code>overflow: hidden</code> (no scrolling needed)</li>
+                <li><code>.cards-container</code>: <code>display: flex; flex-wrap: wrap</code> creates responsive grid</li>
                 <li><code>justify-content: center</code> centers the grid on the page</li>
                 <li>Each card: <code>width: calc(33.333% - 20px)</code> for 3 cards per row</li>
                 <li>Minimum width: <code>min-width: 280px</code> prevents cards from getting too small</li>
@@ -394,20 +407,31 @@
 
             <h3>Mobile Layout (≤ 768px)</h3>
             <ul>
+                <li><code>.cards-wrapper</code>: <code>overflow-x: auto</code> - ONLY this container scrolls</li>
+                <li><code>.cards-container</code>: <code>width: max-content</code> allows it to be wider than wrapper</li>
                 <li><code>flex-wrap: nowrap</code> prevents wrapping to create horizontal layout</li>
-                <li><code>overflow-x: auto</code> enables horizontal scrolling</li>
                 <li><code>scroll-snap-type: x mandatory</code> creates clean card alignment</li>
-                <li>Fixed card width: <code>flex: 0 0 280px</code> for consistent scrolling</li>
-                <li>Hidden scrollbars and proper containment prevent page-level scrolling</li>
+                <li>Fixed card width: <code>flex: 0 0 280px</code> for consistent scrolling experience</li>
+                <li>Page remains fixed - only the cards section scrolls horizontally</li>
             </ul>
 
-            <h3>Mobile Fixes Applied</h3>
+            <h3>Container-Based Scrolling Approach</h3>
             <ul>
-                <li><strong>Viewport Containment:</strong> <code>html, body { overflow-x: hidden }</code> prevents page-level horizontal scroll</li>
-                <li><strong>Proper Padding:</strong> Consistent 15px padding on mobile for edge alignment</li>
-                <li><strong>Box Sizing:</strong> <code>box-sizing: border-box</code> ensures proper width calculations</li>
-                <li><strong>Button Contrast:</strong> Improved colors for better accessibility (dark blue backgrounds, white text)</li>
-                <li><strong>Touch Optimization:</strong> Proper touch targets and gesture handling</li>
+                <li><strong>Dedicated Wrapper:</strong> <code>.cards-wrapper</code> contains only the scrolling behavior</li>
+                <li><strong>Isolated Scrolling:</strong> Only cards section scrolls - page remains fixed</li>
+                <li><strong>Content Freedom:</strong> <code>.cards-container</code> can be wider than viewport</li>
+                <li><strong>Precise Control:</strong> Scrolling is contained within the designated area</li>
+                <li><strong>No Page Movement:</strong> Rest of webpage stays perfectly aligned</li>
+            </ul>
+
+            <h3>Mobile Layout Fixes</h3>
+            <ul>
+                <li><strong>Viewport Containment:</strong> <code>html, body { overflow-x: hidden }</code> prevents page-level scroll</li>
+                <li><strong>Wrapper Scrolling:</strong> <code>.cards-wrapper { overflow-x: auto }</code> isolates scroll to cards only</li>
+                <li><strong>Container Width:</strong> <code>width: max-content</code> allows container to expand beyond wrapper</li>
+                <li><strong>Proper Padding:</strong> Consistent 15px padding for perfect edge alignment</li>
+                <li><strong>Button Contrast:</strong> Dark blue backgrounds with white text for accessibility</li>
+                <li><strong>Touch Optimization:</strong> Proper touch targets and smooth gesture handling</li>
             </ul>
 
             <h3>Key Features</h3>
@@ -429,38 +453,39 @@
     <!-- Navigation JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            const wrapper = document.querySelector('.cards-wrapper');
             const container = document.getElementById('cardsContainer');
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
 
-            if (!container || !prevBtn || !nextBtn) return;
+            if (!wrapper || !container || !prevBtn || !nextBtn) return;
 
             // Scroll amount (card width + gap)
             const scrollAmount = 295; // 280px card + 15px gap
 
             function updateButtons() {
-                const { scrollLeft, scrollWidth, clientWidth } = container;
+                const { scrollLeft, scrollWidth, clientWidth } = wrapper;
                 prevBtn.disabled = scrollLeft <= 0;
                 nextBtn.disabled = scrollLeft >= scrollWidth - clientWidth - 1;
             }
 
             prevBtn.addEventListener('click', () => {
-                container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                wrapper.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
                 setTimeout(updateButtons, 300);
             });
 
             nextBtn.addEventListener('click', () => {
-                container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                wrapper.scrollBy({ left: scrollAmount, behavior: 'smooth' });
                 setTimeout(updateButtons, 300);
             });
 
             // Update buttons on scroll
-            container.addEventListener('scroll', updateButtons);
+            wrapper.addEventListener('scroll', updateButtons);
             updateButtons(); // Initial state
 
             // Auto-hide scroll indicator after first scroll
             let hasScrolled = false;
-            container.addEventListener('scroll', () => {
+            wrapper.addEventListener('scroll', () => {
                 if (!hasScrolled) {
                     hasScrolled = true;
                     const indicator = document.querySelector('.scroll-indicator');
