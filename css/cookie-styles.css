@@ -1,0 +1,392 @@
+/*
+ * 1 Call Rapid Response - Cookie Management Styles
+ * Author: Bhekumusa Eric Ntshwenya
+ * Version: 1.0.0
+ */
+
+/* ==================== COOKIE CONSENT BANNER ==================== */
+
+.cookie-consent-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #002244 0%, #003366 100%);
+    color: white;
+    padding: 20px;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    transform: translateY(100%);
+    transition: transform 0.3s ease-in-out;
+    border-top: 3px solid #ffd700;
+}
+
+.cookie-consent-banner.show {
+    transform: translateY(0);
+}
+
+.cookie-consent-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 20px;
+    align-items: center;
+}
+
+.cookie-consent-text h5 {
+    color: #ffd700;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.cookie-consent-text h5 i {
+    margin-right: 8px;
+}
+
+.cookie-consent-text p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+    opacity: 0.9;
+}
+
+.cookie-consent-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 250px;
+}
+
+.cookie-consent-options .form-check {
+    margin: 0;
+}
+
+.cookie-consent-options .form-check-label {
+    font-size: 13px;
+    color: white;
+    cursor: pointer;
+}
+
+.cookie-consent-options .form-check-input:checked {
+    background-color: #ffd700;
+    border-color: #ffd700;
+}
+
+.cookie-consent-options .form-check-input:focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.25);
+}
+
+.cookie-consent-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.cookie-consent-buttons .btn {
+    font-size: 13px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.cookie-consent-buttons .btn-outline-secondary {
+    border-color: rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+.cookie-consent-buttons .btn-outline-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: white;
+}
+
+.cookie-consent-buttons .btn-primary {
+    background-color: #0066cc;
+    border-color: #0066cc;
+}
+
+.cookie-consent-buttons .btn-primary:hover {
+    background-color: #0052a3;
+    border-color: #0052a3;
+}
+
+.cookie-consent-buttons .btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.cookie-consent-buttons .btn-success:hover {
+    background-color: #218838;
+    border-color: #218838;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .cookie-consent-content {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .cookie-consent-options {
+        min-width: auto;
+    }
+    
+    .cookie-consent-buttons {
+        justify-content: center;
+    }
+    
+    .cookie-consent-buttons .btn {
+        flex: 1;
+        min-width: 100px;
+    }
+}
+
+/* ==================== THEME SWITCHING ==================== */
+
+/* Dark Theme Variables */
+:root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --text-primary: #212529;
+    --text-secondary: #6c757d;
+    --border-color: #dee2e6;
+    --card-bg: #ffffff;
+    --navbar-bg: rgba(255, 255, 255, 0.95);
+}
+
+.dark-theme {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0b0;
+    --border-color: #404040;
+    --card-bg: #2d2d2d;
+    --navbar-bg: rgba(26, 26, 26, 0.95);
+}
+
+/* Apply theme variables */
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar {
+    background-color: var(--navbar-bg) !important;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.service-card {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+.form-control {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.form-control:focus {
+    background-color: var(--bg-secondary);
+    border-color: #002244;
+    color: var(--text-primary);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    background: linear-gradient(135deg, #002244 0%, #003366 100%);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 34, 68, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.theme-toggle:hover {
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 34, 68, 0.4);
+}
+
+.theme-toggle i {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.dark-theme .theme-toggle i {
+    transform: rotate(180deg);
+}
+
+/* ==================== NOTIFICATIONS ==================== */
+
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9998;
+    min-width: 300px;
+    animation: slideInRight 0.3s ease;
+}
+
+.notification .alert {
+    margin: 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Form Progress Notification */
+.form-progress-notification {
+    margin-bottom: 20px;
+}
+
+.form-progress-notification .alert {
+    border-left: 4px solid #17a2b8;
+    background-color: rgba(23, 162, 184, 0.1);
+}
+
+/* ==================== COOKIE PREFERENCES MODAL ==================== */
+
+.cookie-preferences-modal .modal-header {
+    background: linear-gradient(135deg, #002244 0%, #003366 100%);
+    color: white;
+    border-bottom: none;
+}
+
+.cookie-preferences-modal .modal-header .btn-close {
+    filter: invert(1);
+}
+
+.cookie-preferences-modal .cookie-category {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+    background-color: var(--bg-secondary);
+}
+
+.cookie-preferences-modal .cookie-category h6 {
+    color: #002244;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.dark-theme .cookie-preferences-modal .cookie-category h6 {
+    color: #ffd700;
+}
+
+.cookie-preferences-modal .cookie-category p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+}
+
+.cookie-preferences-modal .form-switch {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cookie-preferences-modal .form-switch .form-check-input {
+    margin: 0;
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+
+@media (max-width: 576px) {
+    .theme-toggle {
+        right: 15px;
+        width: 45px;
+        height: 45px;
+    }
+    
+    .theme-toggle i {
+        font-size: 16px;
+    }
+    
+    .notification {
+        right: 15px;
+        left: 15px;
+        min-width: auto;
+    }
+    
+    .cookie-consent-banner {
+        padding: 15px;
+    }
+}
+
+/* ==================== ACCESSIBILITY ==================== */
+
+.cookie-consent-banner:focus-within {
+    outline: 2px solid #ffd700;
+    outline-offset: 2px;
+}
+
+.theme-toggle:focus {
+    outline: 2px solid #ffd700;
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .cookie-consent-banner {
+        border: 2px solid white;
+    }
+    
+    .theme-toggle {
+        border: 2px solid white;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .cookie-consent-banner,
+    .theme-toggle,
+    .notification,
+    body {
+        transition: none;
+    }
+    
+    @keyframes slideInRight {
+        from, to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+}
+
+/* Print styles */
+@media print {
+    .cookie-consent-banner,
+    .theme-toggle,
+    .notification {
+        display: none !important;
+    }
+}

@@ -61,6 +61,86 @@ app.use(compression({
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
+// Cookie parsing middleware (built-in Express functionality)
+// Parse cookies from incoming requests
+app.use((req, res, next) => {
+  const cookies = {};
+  if (req.headers.cookie) {
+    req.headers.cookie.split(';').forEach(cookie => {
+      const parts = cookie.trim().split('=');
+      if (parts.length === 2) {
+        cookies[parts[0]] = decodeURIComponent(parts[1]);
+      }
+    });
+  }
+  req.cookies = cookies;
+  next();
+});
+
+// Cookie utility functions
+const cookieUtils = {
+  // Set a cookie with options
+  setCookie: (res, name, value, options = {}) => {
+    const defaults = {
+      httpOnly: false,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 24 * 60 * 60 * 1000 // 24 hours default
+    };
+    
+    const cookieOptions = { ...defaults, ...options };
+    let cookieString = `${name}=${encodeURIComponent(value)}`;
+    
+    if (cookieOptions.maxAge) {
+      cookieString += `; Max-Age=${Math.floor(cookieOptions.maxAge / 1000)}`;
+    }
+    
+    if (cookieOptions.expires) {
+      cookieString += `; Expires=${cookieOptions.expires.toUTCString()}`;
+    }
+    
+    if (cookieOptions.domain) {
+      cookieString += `; Domain=${cookieOptions.domain}`;
+    }
+    
+    if (cookieOptions.path) {
+      cookieString += `; Path=${cookieOptions.path}`;
+    } else {
+      cookieString += `; Path=/`;
+    }
+    
+    if (cookieOptions.secure) {
+      cookieString += `; Secure`;
+    }
+    
+    if (cookieOptions.httpOnly) {
+      cookieString += `; HttpOnly`;
+    }
+    
+    if (cookieOptions.sameSite) {
+      cookieString += `; SameSite=${cookieOptions.sameSite}`;
+    }
+    
+    res.setHeader('Set-Cookie', cookieString);
+  },
+  
+  // Clear a cookie
+  clearCookie: (res, name, options = {}) => {
+    const cookieOptions = {
+      ...options,
+      expires: new Date(0),
+      maxAge: 0
+    };
+    cookieUtils.setCookie(res, name, '', cookieOptions);
+  }
+};
+
+// Make cookie utils available to routes
+app.use((req, res, next) => {
+  res.cookieUtils = cookieUtils;
+  next();
+});
+
 // Serve static files with caching
 app.use(express.static(path.join(__dirname), {
   maxAge: '1d',
@@ -309,6 +389,227 @@ app.post('/api/quote', limiter, async (req, res) => {
     res.status(500).json({
       success: false,
       message: 'Failed to submit quote request. Please try again later.'
+    });
+  }
+});
+
+// Cookie-based API endpoints
+
+// Set user preferences
+app.post('/api/preferences', (req, res) => {
+  try {
+    const { theme, language, autoFill, notifications } = req.body;
+    
+    const preferences = {
+      theme: theme || 'light',
+      language: language || 'en',
+      autoFill: autoFill !== undefined ? autoFill : true,
+      notifications: notifications !== undefined ? notifications : true,
+      lastUpdated: new Date().toISOString()
+    };
+    
+    // Set preferences cookie (30 days)
+    res.cookieUtils.setCookie(res, 'user_preferences', JSON.stringify(preferences), {
+      maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+      httpOnly: false, // Allow JavaScript access for client-side theme switching
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax'
+    });
+    
+    res.json({
+      success: true,
+      message: 'Preferences saved successfully',
+      preferences
+    });
+  } catch (error) {
+    console.error('Preferences error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to save preferences'
+    });
+  }
+});
+
+// Get user preferences
+app.get('/api/preferences', (req, res) => {
+  try {
+    const preferencesString = req.cookies.user_preferences;
+    let preferences = {
+      theme: 'light',
+      language: 'en',
+      autoFill: true,
+      notifications: true
+    };
+    
+    if (preferencesString) {
+      try {
+        preferences = JSON.parse(preferencesString);
+      } catch (parseError) {
+        console.error('Error parsing preferences cookie:', parseError);
+      }
+    }
+    
+    res.json({
+      success: true,
+      preferences
+    });
+  } catch (error) {
+    console.error('Get preferences error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to retrieve preferences'
+    });
+  }
+});
+
+// Save form progress (for contact/quote forms)
+app.post('/api/form-progress', (req, res) => {
+  try {
+    const { formType, formData } = req.body;
+    
+    if (!formType || !formData) {
+      return res.status(400).json({
+        success: false,
+        message: 'Form type and data are required'
+      });
+    }
+    
+    const progressData = {
+      formType,
+      formData,
+      timestamp: new Date().toISOString()
+    };
+    
+    // Set form progress cookie (1 hour)
+    res.cookieUtils.setCookie(res, `form_progress_${formType}`, JSON.stringify(progressData), {
+      maxAge: 60 * 60 * 1000, // 1 hour
+      httpOnly: false,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax'
+    });
+    
+    res.json({
+      success: true,
+      message: 'Form progress saved'
+    });
+  } catch (error) {
+    console.error('Form progress error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to save form progress'
+    });
+  }
+});
+
+// Get form progress
+app.get('/api/form-progress/:formType', (req, res) => {
+  try {
+    const { formType } = req.params;
+    const progressString = req.cookies[`form_progress_${formType}`];
+    
+    if (!progressString) {
+      return res.json({
+        success: true,
+        progress: null
+      });
+    }
+    
+    let progress = null;
+    try {
+      progress = JSON.parse(progressString);
+    } catch (parseError) {
+      console.error('Error parsing form progress cookie:', parseError);
+    }
+    
+    res.json({
+      success: true,
+      progress
+    });
+  } catch (error) {
+    console.error('Get form progress error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to retrieve form progress'
+    });
+  }
+});
+
+// Clear form progress
+app.delete('/api/form-progress/:formType', (req, res) => {
+  try {
+    const { formType } = req.params;
+    res.cookieUtils.clearCookie(res, `form_progress_${formType}`);
+    
+    res.json({
+      success: true,
+      message: 'Form progress cleared'
+    });
+  } catch (error) {
+    console.error('Clear form progress error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to clear form progress'
+    });
+  }
+});
+
+// Set cookie consent
+app.post('/api/cookie-consent', (req, res) => {
+  try {
+    const { analytics, marketing, functional } = req.body;
+    
+    const consent = {
+      analytics: analytics || false,
+      marketing: marketing || false,
+      functional: functional !== undefined ? functional : true,
+      timestamp: new Date().toISOString()
+    };
+    
+    // Set consent cookie (1 year)
+    res.cookieUtils.setCookie(res, 'cookie_consent', JSON.stringify(consent), {
+      maxAge: 365 * 24 * 60 * 60 * 1000, // 1 year
+      httpOnly: false,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax'
+    });
+    
+    res.json({
+      success: true,
+      message: 'Cookie consent saved',
+      consent
+    });
+  } catch (error) {
+    console.error('Cookie consent error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to save cookie consent'
+    });
+  }
+});
+
+// Get cookie consent
+app.get('/api/cookie-consent', (req, res) => {
+  try {
+    const consentString = req.cookies.cookie_consent;
+    let consent = null;
+    
+    if (consentString) {
+      try {
+        consent = JSON.parse(consentString);
+      } catch (parseError) {
+        console.error('Error parsing consent cookie:', parseError);
+      }
+    }
+    
+    res.json({
+      success: true,
+      consent
+    });
+  } catch (error) {
+    console.error('Get cookie consent error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to retrieve cookie consent'
     });
   }
 });

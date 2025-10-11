@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cookie-styles.css">
 </head>
 <body>
     <!-- Particles.js Background -->
@@ -24,6 +25,11 @@
     <div class="back-to-top">
         <i class="fas fa-arrow-up"></i>
     </div>
+
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" onclick="cookieManager.toggleTheme()" title="Toggle Dark/Light Theme">
+        <i class="fas fa-moon"></i>
+    </button>
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
@@ -152,27 +158,27 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label for="name" class="form-label">Full Name</label>
-                                        <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="email" class="form-label">Email Address</label>
-                                        <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" required>
                                     </div>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="phone" class="form-label">Phone Number</label>
-                                    <input type="tel" class="form-control" id="phone" placeholder="Your Phone Number">
+                                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Your Phone Number">
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="subject" class="form-label">Subject</label>
-                                    <input type="text" class="form-control" id="subject" placeholder="Subject">
+                                    <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject">
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="message" class="form-label">Message</label>
-                                    <textarea class="form-control" id="message" rows="5" placeholder="Your Message" required></textarea>
+                                    <textarea class="form-control" id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
                                 </div>
 
                                 <div class="mb-3 form-check">
@@ -253,6 +259,7 @@
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="js/particles-config.js"></script>
+    <script src="js/cookie-manager.js"></script>
     <script src="js/main.js"></script>
     <script src="js/quote-form.js"></script>
     <script src="js/download-profile.js"></script>
