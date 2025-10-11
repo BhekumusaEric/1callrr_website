@@ -115,8 +115,20 @@ class CookieManager {
                 this.applyPreferences();
             }
         } catch (error) {
-            console.error('Failed to load user preferences:', error);
-            this.preferences = this.getDefaultPreferences();
+            console.warn('Server not available, using local storage fallback:', error);
+            // Fallback to local cookie storage
+            const localPreferences = this.getCookie('user_preferences');
+            if (localPreferences) {
+                try {
+                    this.preferences = JSON.parse(localPreferences);
+                    this.applyPreferences();
+                } catch (parseError) {
+                    console.error('Error parsing local preferences:', parseError);
+                    this.preferences = this.getDefaultPreferences();
+                }
+            } else {
+                this.preferences = this.getDefaultPreferences();
+            }
         }
     }
 
@@ -143,8 +155,21 @@ class CookieManager {
             }
             return false;
         } catch (error) {
-            console.error('Failed to save user preferences:', error);
-            return false;
+            console.warn('Server not available, using local storage fallback:', error);
+            // Fallback to local cookie storage
+            const preferencesWithTimestamp = {
+                ...preferences,
+                lastUpdated: new Date().toISOString()
+            };
+            
+            // Save to cookie with 30 days expiration
+            this.setCookie('user_preferences', JSON.stringify(preferencesWithTimestamp), {
+                maxAge: 30 * 24 * 60 * 60 // 30 days in seconds
+            });
+            
+            this.preferences = preferencesWithTimestamp;
+            this.applyPreferences();
+            return true;
         }
     }
 
@@ -355,6 +380,7 @@ class CookieManager {
      */
     async checkCookieConsent() {
         try {
+            // Try server first, fallback to local storage
             const response = await fetch(`${this.apiBase}/cookie-consent`);
             const data = await response.json();
             
@@ -364,8 +390,19 @@ class CookieManager {
                 this.consent = data.consent;
             }
         } catch (error) {
-            console.error('Failed to check cookie consent:', error);
-            this.showCookieConsentBanner();
+            console.warn('Server not available, using local storage fallback:', error);
+            // Fallback to local cookie/localStorage check
+            const localConsent = this.getCookie('cookie_consent');
+            if (!localConsent) {
+                this.showCookieConsentBanner();
+            } else {
+                try {
+                    this.consent = JSON.parse(localConsent);
+                } catch (parseError) {
+                    console.error('Error parsing local consent:', parseError);
+                    this.showCookieConsentBanner();
+                }
+            }
         }
     }
 
@@ -375,6 +412,7 @@ class CookieManager {
      */
     async saveCookieConsent(consent) {
         try {
+            // Try server first, fallback to local storage
             const response = await fetch(`${this.apiBase}/cookie-consent`, {
                 method: 'POST',
                 headers: {
@@ -388,12 +426,27 @@ class CookieManager {
             if (data.success) {
                 this.consent = data.consent;
                 this.hideCookieConsentBanner();
+                this.showNotification('Cookie preferences saved successfully!', 'success');
                 return true;
             }
             return false;
         } catch (error) {
-            console.error('Failed to save cookie consent:', error);
-            return false;
+            console.warn('Server not available, using local storage fallback:', error);
+            // Fallback to local cookie storage
+            const consentWithTimestamp = {
+                ...consent,
+                timestamp: new Date().toISOString()
+            };
+            
+            // Save to cookie with 1 year expiration
+            this.setCookie('cookie_consent', JSON.stringify(consentWithTimestamp), {
+                maxAge: 365 * 24 * 60 * 60 // 1 year in seconds
+            });
+            
+            this.consent = consentWithTimestamp;
+            this.hideCookieConsentBanner();
+            this.showNotification('Cookie preferences saved successfully!', 'success');
+            return true;
         }
     }
 
