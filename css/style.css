@@ -1,4 +1,488 @@
 /*
+ * Download Toast Notification Styles
+ */
+.toast-container {
+    z-index: 9999 !important;
+}
+
+.toast {
+    min-width: 350px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+}
+
+.toast-header {
+    background-color: #002244 !important;
+    color: white !important;
+    border-bottom: 1px solid #ffd700 !important;
+}
+
+.toast-body {
+    background-color: #002244 !important;
+    color: white !important;
+    font-weight: 500;
+}
+
+.btn-close-white {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* B-BBEE Credentials Section */
+.credential-card {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0.05) 100%);
+    border: 2px solid #ffd700;
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(255, 215, 0, 0.2);
+}
+
+.credential-badge {
+    margin-bottom: 20px;
+}
+
+.credential-badge i {
+    font-size: 3rem;
+    color: #ffd700;
+    margin-bottom: 15px;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.credential-badge h3 {
+    color: #ffd700;
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.credential-badge p {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.procurement-recognition h4 {
+    color: #ffd700;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.procurement-recognition p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+}
+
+.credential-benefits {
+    margin-top: 20px;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    color: white;
+    font-weight: 500;
+}
+
+.benefit-item i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+/* Client Experience Cards */
+.client-experience-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 15px;
+    padding: 25px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.client-experience-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #ffd700 0%, #002244 100%);
+}
+
+.client-experience-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 34, 68, 0.3);
+    border-color: #ffd700;
+}
+
+.client-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.client-header i {
+    font-size: 2.5rem;
+    color: #ffd700;
+    margin-bottom: 10px;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+}
+
+.client-header h5 {
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.client-details h6 {
+    color: #ffd700;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+}
+
+.client-details .duration {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.client-details .service-type {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+    font-style: italic;
+    margin-bottom: 0;
+}
+
+/* Service Highlight Cards */
+.service-highlight-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.service-highlight-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #ffd700 0%, #002244 100%);
+}
+
+.service-highlight-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 34, 68, 0.2);
+    border-color: #ffd700;
+}
+
+.service-highlight-card i {
+    font-size: 2rem;
+    color: #ffd700;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.service-highlight-card h6 {
+    color: white;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.service-highlight-card p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.8rem;
+    margin-bottom: 0;
+    font-style: italic;
+}
+
+/* Enhanced Existing Styles */
+.particles-section {
+    position: relative;
+    background: linear-gradient(135deg, #001122 0%, #002244 50%, #003366 100%);
+}
+
+.particles-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0, 102, 204, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.glass-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    border-radius: 20px;
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-8px);
+    box-shadow:
+        0 20px 40px rgba(0, 34, 68, 0.4),
+        0 0 30px rgba(255, 215, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 215, 0, 0.5);
+}
+
+.service-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #002244 0%, #ffd700 50%, #002244 100%);
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow:
+        0 25px 50px rgba(0, 34, 68, 0.2),
+        0 0 30px rgba(255, 215, 0, 0.1);
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffd700 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+    font-weight: 700;
+}
+
+/* Mobile Horizontal Scrolling */
+@media (max-width: 768px) {
+    /* Client Experience Cards - Horizontal Scroll */
+    .client-experience-mobile {
+        display: flex;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        padding: 10px 0;
+        gap: 15px;
+    }
+    
+    .client-experience-mobile::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .client-experience-mobile .client-experience-card {
+        flex: 0 0 280px;
+        margin-bottom: 0;
+        padding: 20px;
+    }
+    
+    /* Service Cards - Horizontal Scroll */
+    .services-mobile {
+        display: flex;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        padding: 10px 0;
+        gap: 15px;
+    }
+    
+    .services-mobile::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .services-mobile .service-card {
+        flex: 0 0 280px;
+        margin-bottom: 0;
+    }
+    
+    /* Service Highlights - Horizontal Scroll */
+    .service-highlights-mobile {
+        display: flex;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        padding: 10px 0;
+        gap: 12px;
+    }
+    
+    .service-highlights-mobile::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .service-highlights-mobile .service-highlight-card {
+        flex: 0 0 160px;
+        margin-bottom: 0;
+        padding: 15px;
+    }
+    
+    /* Cyber Security Cards - Horizontal Scroll */
+    .cyber-security-mobile {
+        display: flex;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        padding: 10px 0;
+        gap: 15px;
+    }
+    
+    .cyber-security-mobile::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .cyber-security-mobile .glass-card {
+        flex: 0 0 250px;
+        margin-bottom: 0;
+    }
+    
+    /* Why Choose Us Cards - Horizontal Scroll */
+    .why-choose-mobile {
+        display: flex;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        padding: 10px 0;
+        gap: 15px;
+    }
+    
+    .why-choose-mobile::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .why-choose-mobile .glass-card {
+        flex: 0 0 250px;
+        margin-bottom: 0;
+    }
+    
+    /* Scroll Indicators */
+    .scroll-indicator {
+        text-align: center;
+        margin-top: 15px;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.8rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+    }
+    
+    .scroll-indicator i {
+        animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+            transform: translateX(0);
+        }
+        40% {
+            transform: translateX(-3px);
+        }
+        60% {
+            transform: translateX(3px);
+        }
+    }
+    
+    /* Mobile Optimizations */
+    .credential-card {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .credential-badge h3 {
+        font-size: 1.4rem;
+    }
+    
+    .procurement-recognition h4 {
+        font-size: 1.5rem;
+    }
+    
+    .client-header i {
+        font-size: 2rem;
+    }
+    
+    .service-highlight-card i {
+        font-size: 1.5rem;
+    }
+    
+    /* Reduce section padding on mobile */
+    .py-5 {
+        padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
+    }
+    
+    /* Optimize text sizes */
+    .lead {
+        font-size: 1rem;
+    }
+    
+    h2 {
+        font-size: 1.8rem;
+    }
+    
+    /* Hide desktop grid on mobile */
+    .mobile-hidden {
+        display: none !important;
+    }
+    
+    /* Show mobile scrollers */
+    .mobile-only {
+        display: block !important;
+    }
+}
+
+/* Desktop - Hide mobile scrollers */
+@media (min-width: 769px) {
+    .mobile-only {
+        display: none !important;
+    }
+}
+
+/*
 * 1 Call Rapid Response - Main Stylesheet
 * Author: Bhekumusa Eric Ntshwenya
 * Version: 1.1

@@ -177,6 +177,13 @@ app.get('/sitemap.xml', (req, res) => {
   res.sendFile(path.join(__dirname, 'sitemap.xml'));
 });
 
+// Business profile download endpoint
+app.get('/files/1CallRR_Business_Profile_2025.pdf', (req, res) => {
+  res.setHeader('Content-Type', 'application/pdf');
+  res.setHeader('Content-Disposition', 'attachment; filename="1CallRR_Business_Profile_2025.pdf"');
+  res.sendFile(path.join(__dirname, 'files', '1CallRR_Business_Profile_2025.pdf'));
+});
+
 // Email configuration
 const transporter = nodemailer.createTransporter({
   service: 'gmail',
