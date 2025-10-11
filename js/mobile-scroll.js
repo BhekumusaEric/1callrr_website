@@ -246,45 +246,220 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Add CSS for scroll progress dots
+// Add scroll hints for mobile sections
+function addScrollHint(container) {
+    const cards = container.children;
+    if (cards.length <= 2) return; // Only show hint if there are more cards than can fit
+
+    // Check if container has overflow
+    const hasOverflow = container.scrollWidth > container.clientWidth;
+    if (!hasOverflow) return;
+
+    // Create scroll hint
+    const hint = document.createElement('div');
+    hint.className = 'scroll-hint';
+    hint.innerHTML = '<i class="fas fa-chevron-right"></i> Scroll';
+
+    // Position hint relative to container
+    const containerRect = container.getBoundingClientRect();
+    hint.style.position = 'absolute';
+    hint.style.right = '10px';
+    hint.style.top = '50%';
+    hint.style.transform = 'translateY(-50%)';
+
+    // Add hint to container's parent
+    container.parentElement.style.position = 'relative';
+    container.parentElement.appendChild(hint);
+
+    // Hide hint after first scroll
+    let hasScrolled = false;
+    container.addEventListener('scroll', () => {
+        if (!hasScrolled) {
+            hasScrolled = true;
+            hint.style.opacity = '0';
+            setTimeout(() => hint.remove(), 300);
+        }
+    });
+
+    // Auto-hide hint after 5 seconds if not scrolled
+    setTimeout(() => {
+        if (!hasScrolled) {
+            hint.style.opacity = '0';
+            setTimeout(() => hint.remove(), 300);
+        }
+    }, 5000);
+}
+
+// Add scroll hints to mobile sections
+if (window.innerWidth <= 768) {
+    setTimeout(() => {
+        const mobileSections = [
+            '.why-choose-mobile',
+            '.services-mobile',
+            '.service-highlights-mobile',
+            '.cyber-security-mobile',
+            '.client-experience-mobile'
+        ];
+
+        mobileSections.forEach(selector => {
+            const section = document.querySelector(selector);
+            if (section) {
+                addScrollHint(section);
+            }
+        });
+    }, 2000); // Add hints after page load animations
+}
+
+// Add CSS for scroll progress dots and animations
 const style = document.createElement('style');
 style.textContent = `
-    .scroll-progress {
-        display: flex;
-        justify-content: center;
-        gap: 8px;
-        margin-top: 10px;
+.scroll-progress {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.progress-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.progress-dot::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border-radius: 50%;
+    background: rgba(255, 215, 0, 0.2);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.progress-dot.active {
+    background: #ffd700;
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.progress-dot.active::before {
+    opacity: 1;
+}
+
+/* Auto-slide indicator */
+.auto-slide-indicator {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    z-index: 10;
+}
+
+.auto-slide-indicator i {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@media (max-width: 768px) {
+    /* Ensure smooth scrolling on mobile */
+    .mobile-only {
+        scroll-snap-type: x mandatory;
     }
-    
-    .progress-dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.3);
-        transition: all 0.3s ease;
-        cursor: pointer;
+
+    .mobile-only > * {
+        scroll-snap-align: center;
     }
-    
-    .progress-dot.active {
-        background: #ffd700;
-        transform: scale(1.2);
+
+    /* Optimize touch scrolling */
+    .mobile-only {
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-x: contain;
     }
-    
-    @media (max-width: 768px) {
-        /* Ensure smooth scrolling on mobile */
-        .mobile-only {
-            scroll-snap-type: x mandatory;
-        }
-        
-        .mobile-only > * {
-            scroll-snap-align: center;
-        }
-        
-        /* Optimize touch scrolling */
-        .mobile-only {
-            -webkit-overflow-scrolling: touch;
-            overscroll-behavior-x: contain;
-        }
+
+    /* Add auto-slide indicators to mobile sections */
+    .mobile-only {
+        position: relative;
     }
+
+    .mobile-only::after {
+        content: 'Auto-sliding • Touch to pause';
+        position: absolute;
+        top: -25px;
+        right: 0;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 10px;
+        font-weight: 500;
+        z-index: 10;
+    }
+}
+
+/* Enhanced slide animations */
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(100px) scale(0.9);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromRightFar {
+    0% {
+        transform: translateX(150px) scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInStaggered {
+    0% {
+        transform: translateX(80px) scale(0.95);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+    }
+}
+
+/* Add bounce effect to cards */
+.glass-card:hover,
+.service-card:hover,
+.client-experience-card:hover,
+.service-highlight-card:hover {
+    animation: bounceIn 0.6s ease-out;
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
 `;
 document.head.appendChild(style);
