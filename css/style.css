@@ -615,9 +615,35 @@ footer a:hover {
     }
 
     /* Card Spacing */
+    /* Card Spacing */
     .glass-card,
     .service-card {
         margin-bottom: 15px;
+    }
+
+    /* Mobile Carousel - Force Flex to override .mobile-only block */
+    .mobile-carousel.mobile-only {
+        display: flex !important;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 20px;
+        padding: 10px 15px 30px;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        justify-content: flex-start;
+    }
+
+    .mobile-carousel::-webkit-scrollbar {
+        display: none;
+    }
+
+    .carousel-card {
+        min-width: 280px;
+        width: 85%;
+        scroll-snap-align: center;
+        flex-shrink: 0;
+        margin-right: 0;
+        /* Clear margins, use gap */
     }
 }
 
@@ -689,30 +715,6 @@ footer a:hover {
 
 .back-to-top:hover {
     transform: translateY(-5px);
-}
-
-/* Mobile Carousel */
-.mobile-carousel {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    gap: 20px;
-    padding: 10px 5px 30px;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    justify-content: flex-start;
-    /* Align items to start */
-}
-
-.mobile-carousel::-webkit-scrollbar {
-    display: none;
-}
-
-.carousel-card {
-    min-width: 280px;
-    width: 85%;
-    scroll-snap-align: center;
-    flex-shrink: 0;
 }
 
 .carousel-nav,
