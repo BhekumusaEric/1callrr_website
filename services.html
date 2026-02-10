@@ -1,26 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Services - 1 Call Rapid Response</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <!-- Particles.js Background -->
-    <div id="particles-js"></div>
 
+<body>
     <!-- Preloader -->
     <div class="preloader">
         <div class="spinner"></div>
     </div>
 
-    <!-- Back to Top Button -->
+    <!-- Back to Top -->
     <div class="back-to-top">
         <i class="fas fa-arrow-up"></i>
     </div>
@@ -29,9 +33,10 @@
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">
+                <img src="images/New logo-02.png" alt="1 Call Rapid Response" height="40">
                 <span>1 Call</span> Rapid Response
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -50,307 +55,170 @@
                     </li>
                 </ul>
                 <div class="d-flex ms-3">
-                    <a href="#" class="btn btn-primary glow-button">Get A Quote</a>
+                    <a href="contact.html" class="btn btn-primary glow-button">Get Quote</a>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Page Header -->
-    <header class="page-header particles-section">
+    <header class="page-header">
         <div class="container">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <h1 class="fw-bold animate__animated animate__fadeInUp">Our <span class="gradient-text">Services</span></h1>
-                </div>
-            </div>
+            <h1 class="animate__animated animate__fadeInDown">Our Services</h1>
+            <p class="lead animate__animated animate__fadeInUp">Comprehensive security solutions tailored for you</p>
         </div>
     </header>
 
-    <!-- Services Section -->
-    <section class="py-5 particles-section">
+    <!-- Services Overview -->
+    <section class="py-5">
         <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="fw-bold gradient-text" data-aos="fade-up">Our specialities</h2>
-                <p class="lead" data-aos="fade-up" data-aos-delay="100">Professional Security Solutions</p>
-            </div>
-
             <div class="row g-4">
-                <!-- Armed & Unarmed Response -->
-                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="service-card h-100">
+                <!-- Physical Security -->
+                <div class="col-12 text-center mb-4">
+                    <h2 class="gradient-text">Physical Security</h2>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up">
+                    <div class="service-card">
                         <div class="card-img-top-container">
-                            <img src="images/armed-security.jpeg" class="card-img-top" alt="Professional armed security personnel providing rapid response services" loading="lazy">
+                            <img src="images/armed-security.jpeg" alt="Armed Response">
                         </div>
                         <div class="card-body">
-                            <div class="service-icon">
-                                <i class="fas fa-shield-alt"></i>
-                            </div>
+                            <div class="service-icon"><i class="fas fa-shield-alt"></i></div>
                             <h4 class="card-title">Armed & Unarmed Response</h4>
-                            <p class="card-text">Our armed and unarmed response teams are highly trained professionals ready to respond to any security situation. We provide:</p>
-                            <ul class="list-unstyled">
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> 24/7 rapid response services</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Trained and certified security personnel</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Quick emergency response times</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Regular patrol services</li>
+                            <p class="card-text">24/7 rapid response units trained for high-risk interventions and
+                                patrol services.</p>
+                            <ul class="list-unstyled mt-3">
+                                <li><i class="fas fa-check text-primary me-2"></i> Quick emergency response</li>
+                                <li><i class="fas fa-check text-primary me-2"></i> Highly trained personnel</li>
+                                <li><i class="fas fa-check text-primary me-2"></i> Regular patrols</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
-                <!-- Event Security -->
-                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-card h-100">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card">
                         <div class="card-img-top-container">
-                            <img src="images/event-security.jpeg" class="card-img-top" alt="Event security team managing crowd control and venue protection" loading="lazy">
+                            <img src="images/event-security.jpeg" alt="Event Security">
                         </div>
                         <div class="card-body">
-                            <div class="service-icon">
-                                <i class="fas fa-users"></i>
-                            </div>
+                            <div class="service-icon"><i class="fas fa-users"></i></div>
                             <h4 class="card-title">Event Security</h4>
-                            <p class="card-text">We provide comprehensive security solutions for events of all sizes, ensuring the safety of attendees and smooth operations:</p>
-                            <ul class="list-unstyled">
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Crowd control management</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Access control and screening</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> VIP protection during events</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Emergency response planning</li>
+                            <p class="card-text">Professional crowd control and safety management for all types of
+                                events.</p>
+                            <ul class="list-unstyled mt-3">
+                                <li><i class="fas fa-check text-primary me-2"></i> Access control</li>
+                                <li><i class="fas fa-check text-primary me-2"></i> VIP management</li>
+                                <li><i class="fas fa-check text-primary me-2"></i> Emergency protocols</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
-                <!-- VIP Security -->
-                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="service-card h-100">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card">
                         <div class="card-img-top-container">
-                            <img src="images/vip-security.png" class="card-img-top" alt="VIP security detail providing executive protection and close personal security" loading="lazy">
+                            <img src="images/vip-security.png" alt="VIP Protection">
                         </div>
                         <div class="card-body">
-                            <div class="service-icon">
-                                <i class="fas fa-user-shield"></i>
-                            </div>
-                            <h4 class="card-title">VIP Security</h4>
-                            <p class="card-text">Our specialized protection services for high-profile individuals and executives include:</p>
-                            <ul class="list-unstyled">
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Personal bodyguard services</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Secure transportation</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Threat assessment and management</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Discreet protection services</li>
+                            <div class="service-icon"><i class="fas fa-user-shield"></i></div>
+                            <h4 class="card-title">VIP Protection</h4>
+                            <p class="card-text">Discreet protection for executives and high-profile individuals.</p>
+                            <ul class="list-unstyled mt-3">
+                                <li><i class="fas fa-check text-primary me-2"></i> Bodyguards</li>
+                                <li><i class="fas fa-check text-primary me-2"></i> Secure transport</li>
+                                <li><i class="fas fa-check text-primary me-2"></i> Risk assessment</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
-                <!-- Offsite Monitoring -->
-                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
-                    <div class="service-card h-100">
-                        <div class="card-img-top-container">
-                            <img src="images/offsite-security.png" class="card-img-top" alt="Advanced offsite monitoring center with multiple security camera feeds and monitoring equipment" loading="lazy">
-                        </div>
-                        <div class="card-body">
-                            <div class="service-icon">
-                                <i class="fas fa-desktop"></i>
-                            </div>
-                            <h4 class="card-title">Offsite Monitoring</h4>
-                            <p class="card-text">Our state-of-the-art monitoring center provides 24/7 surveillance and security monitoring:</p>
-                            <ul class="list-unstyled">
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Remote CCTV monitoring</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Alarm response coordination</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Real-time incident reporting</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Access control management</li>
-                            </ul>
-                        </div>
-                    </div>
+                <!-- Cyber Security -->
+                <div class="col-12 text-center my-5">
+                    <h2 class="gradient-text">Cyber Security</h2>
+                    <p class="lead">Protecting your digital assets</p>
                 </div>
 
-                <!-- Surveillance -->
-                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="500">
-                    <div class="service-card h-100">
-                        <div class="card-img-top-container">
-                            <img src="images/survailence-security.jpeg" class="card-img-top" alt="Advanced surveillance systems with CCTV cameras and monitoring technology" loading="lazy">
-                        </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up">
+                    <div class="service-card">
                         <div class="card-body">
-                            <div class="service-icon">
-                                <i class="fas fa-video"></i>
-                            </div>
-                            <h4 class="card-title">Surveillance</h4>
-                            <p class="card-text">We offer advanced surveillance solutions to protect your property and assets:</p>
-                            <ul class="list-unstyled">
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> CCTV installation and maintenance</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Covert surveillance operations</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Advanced monitoring technology</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Regular security assessments</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Disaster Response -->
-                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="600">
-                    <div class="service-card h-100">
-                        <div class="card-img-top-container">
-                            <img src="images/disaster-security.jpeg" class="card-img-top" alt="Emergency disaster response team coordinating crisis management and evacuation procedures" loading="lazy">
-                        </div>
-                        <div class="card-body">
-                            <div class="service-icon">
-                                <i class="fas fa-exclamation-triangle"></i>
-                            </div>
-                            <h4 class="card-title">Disaster Response</h4>
-                            <p class="card-text">Our disaster response team is trained to handle emergency situations efficiently:</p>
-                            <ul class="list-unstyled">
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Emergency evacuation planning</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Disaster recovery assistance</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Crisis management</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Coordination with emergency services</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Cyber Security Services -->
-            <div class="row g-4 mt-5">
-                <div class="col-12">
-                    <div class="text-center mb-4">
-                        <h3 class="fw-bold gradient-text" data-aos="fade-up">Cyber Security Services</h3>
-                        <p class="lead" data-aos="fade-up" data-aos-delay="100">Comprehensive digital protection for modern businesses</p>
-                    </div>
-                </div>
-
-                <!-- Network Security -->
-                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-card h-100">
-                        <div class="card-body">
-                            <div class="service-icon">
-                                <i class="fas fa-shield-alt"></i>
-                            </div>
+                            <div class="service-icon"><i class="fas fa-network-wired"></i></div>
                             <h4 class="card-title">Network Security</h4>
-                            <p class="card-text">Protect your network infrastructure with advanced security solutions:</p>
-                            <ul class="list-unstyled">
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Next-generation firewall implementation</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Intrusion detection and prevention systems</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> VPN and secure remote access</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Network segmentation and zoning</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> 24/7 network monitoring</li>
+                            <p class="card-text">Robust protection for your network infrastructure.</p>
+                            <ul class="list-unstyled mt-3">
+                                <li><i class="fas fa-check text-primary me-2"></i> Firewalls & IDS</li>
+                                <li><i class="fas fa-check text-primary me-2"></i> Traffic monitoring</li>
+                                <li><i class="fas fa-check text-primary me-2"></i> Secure VPNs</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
-                <!-- Data Protection & Encryption -->
-                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="service-card h-100">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card">
                         <div class="card-body">
-                            <div class="service-icon">
-                                <i class="fas fa-lock"></i>
-                            </div>
-                            <h4 class="card-title">Data Protection & Encryption</h4>
-                            <p class="card-text">Secure your sensitive data with enterprise-grade encryption and protection:</p>
-                            <ul class="list-unstyled">
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> End-to-end data encryption</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Secure data backup solutions</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> GDPR and POPIA compliance</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Data loss prevention (DLP)</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Secure file sharing platforms</li>
+                            <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
+                            <h4 class="card-title">Endpoint Protection</h4>
+                            <p class="card-text">Securing all devices connected to your network.</p>
+                            <ul class="list-unstyled mt-3">
+                                <li><i class="fas fa-check text-primary me-2"></i> Antivirus & Anti-malware</li>
+                                <li><i class="fas fa-check text-primary me-2"></i> Device encryption</li>
+                                <li><i class="fas fa-check text-primary me-2"></i> Remote wipe capabilities</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
-                <!-- Threat Intelligence & Monitoring -->
-                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
-                    <div class="service-card h-100">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card">
                         <div class="card-body">
-                            <div class="service-icon">
-                                <i class="fas fa-user-secret"></i>
-                            </div>
-                            <h4 class="card-title">Threat Intelligence & Monitoring</h4>
-                            <p class="card-text">Proactive threat detection and response services:</p>
-                            <ul class="list-unstyled">
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> 24/7 Security Operations Center (SOC)</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Advanced threat hunting</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Vulnerability assessments</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Incident response planning</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Malware analysis and removal</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Security Training & Awareness -->
-                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="500">
-                    <div class="service-card h-100">
-                        <div class="card-body">
-                            <div class="service-icon">
-                                <i class="fas fa-graduation-cap"></i>
-                            </div>
-                            <h4 class="card-title">Security Training & Awareness</h4>
-                            <p class="card-text">Empower your team with cybersecurity knowledge:</p>
-                            <ul class="list-unstyled">
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Phishing awareness training</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Cybersecurity best practices</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Social engineering prevention</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Incident reporting procedures</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Regular security assessments</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Cloud Security -->
-                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="600">
-                    <div class="service-card h-100">
-                        <div class="card-body">
-                            <div class="service-icon">
-                                <i class="fas fa-cloud"></i>
-                            </div>
+                            <div class="service-icon"><i class="fas fa-cloud-shield"></i></div>
                             <h4 class="card-title">Cloud Security</h4>
-                            <p class="card-text">Secure your cloud infrastructure and applications:</p>
-                            <ul class="list-unstyled">
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Cloud access security brokers (CASB)</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Multi-cloud security management</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Container security</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Serverless security</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Cloud compliance monitoring</li>
+                            <p class="card-text">Safeguarding your data in the cloud.</p>
+                            <ul class="list-unstyled mt-3">
+                                <li><i class="fas fa-check text-primary me-2"></i> Data encryption</li>
+                                <li><i class="fas fa-check text-primary me-2"></i> Access management</li>
+                                <li><i class="fas fa-check text-primary me-2"></i> Compliance auditing</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
-                <!-- Compliance & Risk Management -->
-                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="700">
-                    <div class="service-card h-100">
-                        <div class="card-body">
-                            <div class="service-icon">
-                                <i class="fas fa-clipboard-check"></i>
-                            </div>
-                            <h4 class="card-title">Compliance & Risk Management</h4>
-                            <p class="card-text">Ensure regulatory compliance and manage cyber risks:</p>
-                            <ul class="list-unstyled">
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> ISO 27001 compliance</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Risk assessment and management</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Security audits and reporting</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Penetration testing</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i> Security policy development</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- Call to Action -->
-    <section class="cta-section">
+    <!-- Additional Services & Expertise -->
+    <section class="py-5 particles-section">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-8" data-aos="fade-right">
-                    <h2 class="fw-bold">Need a Customized Security Solution?</h2>
-                    <p class="lead mb-0">Contact us today to discuss your specific security requirements and get a tailored quote.</p>
+            <div class="text-center mb-5">
+                <h2 class="gradient-text">Our Coverage</h2>
+            </div>
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-3">
+                    <div class="service-highlight-card">
+                        <i class="fas fa-home"></i>
+                        <h6>Residential Estates</h6>
+                    </div>
                 </div>
-                <div class="col-lg-4 text-lg-end mt-3 mt-lg-0" data-aos="fade-left">
-                    <a href="contact.html" class="btn btn-light btn-lg animated-element">Get In Touch</a>
+                <div class="col-md-3">
+                    <div class="service-highlight-card">
+                        <i class="fas fa-building"></i>
+                        <h6>Commercial Parks</h6>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="service-highlight-card">
+                        <i class="fas fa-store"></i>
+                        <h6>Retail Centres</h6>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="service-highlight-card">
+                        <i class="fas fa-industry"></i>
+                        <h6>Industrial Sites</h6>
+                    </div>
                 </div>
             </div>
         </div>
@@ -360,47 +228,47 @@
     <footer>
         <div class="container">
             <div class="row">
-                <div class="col-md-4 mb-4 mb-md-0" data-aos="fade-up">
+                <div class="col-md-4 mb-4">
                     <h5>1 Call Rapid Response</h5>
-                    <p>Creating a friendly, secure and safe environment for individuals, corporate and the society.</p>
-                    <div class="social-icons mt-4">
+                    <p>Creating safe environments for everyone. Your safety is our priority.</p>
+                    <div class="social-icons">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-md-4 mb-4">
                     <h5>Quick Links</h5>
                     <ul class="list-unstyled">
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Our Services</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </div>
-                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                    <h5>Contact Us</h5>
-                    <ul class="list-unstyled contact-info">
-                        <li><i class="fas fa-phone"></i> +27 11 568 6927</li>
-                        <li><i class="fas fa-phone"></i> +27 62 517 2088</li>
-                        <li><i class="fas fa-envelope"></i> info@1callrr.co.za</li>
+                <div class="col-md-4">
+                    <h5>Contact Info</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i> +27 62 517 2088</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i> +27 87 265 2244</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@1callrr.co.za</li>
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> 147 Rivonia Road, Sandton</li>
                     </ul>
                 </div>
             </div>
-            <hr>
-            <div class="text-center copyright" data-aos="fade-up">
-                <p class="mb-0">Copyright © 2024 <a href="#">1 Call Rapid Response</a> | All Rights Reserved</p>
+            <div class="text-center mt-4 pt-4 border-top border-secondary">
+                <p class="small mb-0 text-muted">&copy; 2024 1 Call Rapid Response. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="js/particles-config.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/quote-form.js"></script>
-    <script src="js/download-profile.js"></script>
 </body>
+
 </html>

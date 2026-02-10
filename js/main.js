@@ -5,7 +5,7 @@
 */
 
 // Wait for the DOM to be fully loaded
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Scroll to top on page load to fix navigation blank space issue
     window.scrollTo(0, 0);
 
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Navbar scroll effect
     const navbar = document.querySelector('.navbar');
     if (navbar) {
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             if (window.scrollY > 50) {
                 navbar.classList.add('scrolled');
             } else {
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Back to top button
     const backToTopButton = document.querySelector('.back-to-top');
     if (backToTopButton) {
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             if (window.scrollY > 300) {
                 backToTopButton.classList.add('active');
             } else {
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        backToTopButton.addEventListener('click', function() {
+        backToTopButton.addEventListener('click', function () {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Form validation for contact form
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
-        contactForm.addEventListener('submit', async function(e) {
+        contactForm.addEventListener('submit', async function (e) {
             e.preventDefault();
 
             // Simple form validation
@@ -288,11 +288,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add hover effects to service cards
     const serviceCards = document.querySelectorAll('.service-card');
     serviceCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
+        card.addEventListener('mouseenter', function () {
             this.classList.add('hovered');
         });
 
-        card.addEventListener('mouseleave', function() {
+        card.addEventListener('mouseleave', function () {
             this.classList.remove('hovered');
         });
     });
@@ -318,7 +318,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Removed floating animation for professional corporate look
 
     // Add parallax effect to hero and page header sections
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
         const heroSection = document.querySelector('.hero-section');
         const pageHeader = document.querySelector('.page-header');
         const scrollPosition = window.scrollY;
@@ -334,14 +334,14 @@ document.addEventListener('DOMContentLoaded', function() {
         backToTopButton.innerHTML = '<i class="fas fa-arrow-up"></i>';
         document.body.appendChild(backToTopButton);
 
-        backToTopButton.addEventListener('click', function() {
+        backToTopButton.addEventListener('click', function () {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
         });
 
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             if (window.scrollY > 300) {
                 backToTopButton.classList.add('active');
             } else {
@@ -370,7 +370,7 @@ document.addEventListener('DOMContentLoaded', function() {
         img.classList.add('fade-in');
 
         // Trigger the animation once the image is loaded
-        img.addEventListener('load', function() {
+        img.addEventListener('load', function () {
             this.classList.add('active');
         });
 
@@ -379,4 +379,54 @@ document.addEventListener('DOMContentLoaded', function() {
             img.classList.add('active');
         }
     });
+
+
+    // Animated Counters
+    const counterElements = document.querySelectorAll('.counter');
+    if (counterElements.length > 0) {
+        const speed = 50; // The lower the faster
+
+        const animateCounters = () => {
+            counterElements.forEach(counter => {
+                const updateCount = () => {
+                    const target = +counter.getAttribute('data-target');
+                    const count = +counter.innerText;
+
+                    // Determine increment
+                    const inc = target / speed;
+
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + inc);
+                        setTimeout(updateCount, 30);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCount();
+            });
+        }
+
+        // Use Intersection Observer for better performance
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe the section containing counters
+        const firstCounter = counterElements[0];
+        const counterSection = firstCounter.closest('section');
+        if (counterSection) {
+            observer.observe(counterSection);
+        }
+    }
 });
