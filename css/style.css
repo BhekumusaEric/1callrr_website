@@ -181,7 +181,11 @@ section {
 }
 
 .particles-section {
-    background-color: var(--dark-bg);
+    background-color: transparent;
+    /* Changed from var(--dark-bg) to allow particles to show */
+    position: relative;
+    z-index: 1;
+    /* Ensure content is above particles */
 }
 
 #particles-js {
