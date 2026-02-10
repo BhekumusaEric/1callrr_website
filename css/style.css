@@ -554,17 +554,66 @@ footer a:hover {
         display: block !important;
     }
 
+    /* Navbar Fixes */
+    .navbar-brand img {
+        height: 50px;
+        /* Smaller logo on mobile */
+    }
+
+    .navbar .btn-primary {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+        margin-top: 10px;
+        /* Add space if it wraps */
+    }
+
+    /* Hero Section Fixes */
     .hero-section {
-        padding-top: 120px;
+        padding-top: 100px;
+        /* Reduced from 120px */
+        padding-bottom: 60px;
         text-align: center;
+        min-height: auto;
+        /* Remove 100vh on mobile */
+    }
+
+    .hero-section h1 {
+        font-size: 2.5rem;
     }
 
     .hero-section p {
         margin: 0 auto 30px;
+        font-size: 1rem;
+    }
+
+    .hero-section .btn {
+        display: block;
+        width: 100%;
+        margin: 10px 0 !important;
+        /* Stack buttons vertically */
     }
 
     .hero-image-container {
         margin-top: 40px;
+        display: none;
+        /* Hide hero image on mobile to save space/reduce scrolling */
+    }
+
+    /* Section Padding */
+    section {
+        padding: 40px 0 !important;
+        /* Reduce global padding */
+    }
+
+    .py-5 {
+        padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
+    }
+
+    /* Card Spacing */
+    .glass-card,
+    .service-card {
+        margin-bottom: 15px;
     }
 }
 
@@ -643,10 +692,12 @@ footer a:hover {
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    gap: 15px;
-    padding: 10px 0 30px;
+    gap: 20px;
+    padding: 10px 5px 30px;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    justify-content: flex-start;
+    /* Align items to start */
 }
 
 .mobile-carousel::-webkit-scrollbar {
