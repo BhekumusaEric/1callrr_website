@@ -155,6 +155,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
                 submitBtn.disabled = true;
 
+                // Simulate API call for static website (GitHub Pages)
+                // In a real environment, uncomment the fetch code below
+                /*
                 try {
                     const response = await fetch('/api/contact', {
                         method: 'POST',
@@ -179,11 +182,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 } catch (error) {
                     console.error('Contact form submission error:', error);
                     showFormError('Failed to send message. Please try again later.');
-                } finally {
-                    // Reset button state
+                }
+                */
+
+                // Mock success for demo/static site
+                setTimeout(() => {
+                    showFormSuccess('Message sent successfully! (Demo mode: API call simulated)');
+                    contactForm.reset();
                     submitBtn.innerHTML = originalText;
                     submitBtn.disabled = false;
-                }
+                }, 1500);
             }
         });
     }
