@@ -793,4 +793,18 @@ footer a:hover {
 
 .whatsapp-float i {
     margin-top: 2px;
+}/* Partner Logos */
+.partner-logo {
+    max-height: 80px; 
+    object-fit: contain;
+    width: auto;
+    filter: brightness(0) invert(1); /* Make logos white to match dark theme */
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.partner-card:hover .partner-logo {
+    filter: none; /* Show original colors on hover */
+    opacity: 1;
+    transform: scale(1.1);
 }
