@@ -155,43 +155,29 @@ document.addEventListener('DOMContentLoaded', function () {
                 submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
                 submitBtn.disabled = true;
 
-                // Simulate API call for static website (GitHub Pages)
-                // In a real environment, uncomment the fetch code below
-                /*
                 try {
-                    const response = await fetch('/api/contact', {
+                    const formData = new FormData(contactForm);
+
+                    const response = await fetch('https://api.web3forms.com/submit', {
                         method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            name: name.value.trim(),
-                            email: email.value.trim(),
-                            message: message.value.trim()
-                        })
+                        body: formData
                     });
 
                     const data = await response.json();
 
-                    if (data.success) {
-                        showFormSuccess(data.message);
+                    if (response.ok && data.success) {
+                        showFormSuccess('Message sent successfully! Our team will get back to you within 24 hours.');
                         contactForm.reset();
                     } else {
-                        showFormError(data.message);
+                        showFormError(data.message || 'Something went wrong. Please try again.');
                     }
                 } catch (error) {
-                    console.error('Contact form submission error:', error);
-                    showFormError('Failed to send message. Please try again later.');
-                }
-                */
-
-                // Mock success for demo/static site
-                setTimeout(() => {
-                    showFormSuccess('Message sent successfully! (Demo mode: API call simulated)');
-                    contactForm.reset();
+                    console.error('Contact form error:', error);
+                    showFormError('Failed to send message. Please check your connection and try again.');
+                } finally {
                     submitBtn.innerHTML = originalText;
                     submitBtn.disabled = false;
-                }, 1500);
+                }
             }
         });
     }

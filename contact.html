@@ -157,23 +157,29 @@
                     <div class="glass-card">
                         <h3 class="mb-4">Send us a Message</h3>
                         <form id="contactForm">
+                            <input type="hidden" name="access_key" value="8a68439e-47b4-4ee9-8cf6-3d96dfe48720">
+                            <input type="hidden" name="subject"
+                                value="New Contact Form Message - 1 Call Rapid Response">
+                            <input type="checkbox" name="botcheck" class="d-none" style="display:none">
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <label for="name" class="form-label">Your Name</label>
-                                    <input type="text" class="form-control" id="name" required placeholder="John Doe">
+                                    <input type="text" class="form-control" id="name" name="name" required
+                                        placeholder="John Doe">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="email" class="form-label">Email Address</label>
-                                    <input type="email" class="form-control" id="email" required
+                                    <input type="email" class="form-control" id="email" name="email" required
                                         placeholder="john@example.com">
                                 </div>
                                 <div class="col-12">
-                                    <label for="subject" class="form-label">Subject</label>
-                                    <input type="text" class="form-control" id="subject" placeholder="Security Inquiry">
+                                    <label for="contactSubject" class="form-label">Subject</label>
+                                    <input type="text" class="form-control" id="contactSubject" name="inquiry_subject"
+                                        placeholder="Security Inquiry">
                                 </div>
                                 <div class="col-12">
                                     <label for="message" class="form-label">Message</label>
-                                    <textarea class="form-control" id="message" rows="5" required
+                                    <textarea class="form-control" id="message" name="message" rows="5" required
                                         placeholder="How can we help you?"></textarea>
                                 </div>
                                 <div class="col-12">
