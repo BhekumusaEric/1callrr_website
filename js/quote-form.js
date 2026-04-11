@@ -146,33 +146,37 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.disabled = true;
 
             try {
-                // Get form data
-                const formData = {
-                    name: document.getElementById('quoteName').value.trim(),
-                    email: document.getElementById('quoteEmail').value.trim(),
-                    phone: document.getElementById('quotePhone').value.trim(),
-                    company: document.getElementById('quoteCompany').value.trim() || null,
-                    service: document.getElementById('serviceType').value === 'Other'
-                        ? document.getElementById('otherService').value.trim()
-                        : document.getElementById('serviceType').value,
-                    message: document.getElementById('requirements').value.trim(),
-                    location: document.getElementById('location').value === 'Other'
-                        ? document.getElementById('otherLocation').value.trim()
-                        : document.getElementById('location').value,
-                    urgency: 'Standard' // Could be enhanced with urgency selection
-                };
+                const name = document.getElementById('quoteName').value.trim();
+                const email = document.getElementById('quoteEmail').value.trim();
+                const phone = document.getElementById('quotePhone').value.trim();
+                const company = document.getElementById('quoteCompany').value.trim() || 'N/A';
+                const service = document.getElementById('serviceType').value === 'Other'
+                    ? document.getElementById('otherService').value.trim()
+                    : document.getElementById('serviceType').value;
+                const location = document.getElementById('location').value === 'Other'
+                    ? document.getElementById('otherLocation').value.trim()
+                    : document.getElementById('location').value;
+                const requirements = document.getElementById('requirements').value.trim();
 
-                const response = await fetch('/api/quote', {
+                const formData = new FormData();
+                formData.append('access_key', '8a68439e-47b4-4ee9-8cf6-3d96dfe48720');
+                formData.append('subject', 'New Quote Request - 1 Call Rapid Response');
+                formData.append('name', name);
+                formData.append('email', email);
+                formData.append('phone', phone);
+                formData.append('company', company);
+                formData.append('service', service);
+                formData.append('location', location);
+                formData.append('requirements', requirements);
+
+                const response = await fetch('https://api.web3forms.com/submit', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formData)
+                    body: formData
                 });
 
                 const data = await response.json();
 
-                if (data.success) {
+                if (response.ok && data.success) {
                     // Show success message
                     document.getElementById('quoteForm').style.display = 'none';
                     const successDiv = document.getElementById('quoteFormSuccess');
@@ -192,8 +196,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         quoteModal.hide();
                     }, 8000);
                 } else {
-                    // Show error message
-                    showQuoteFormError(data.message);
+                    showQuoteFormError(data.message || 'Something went wrong. Please try again.');
                 }
             } catch (error) {
                 console.error('Quote form submission error:', error);
