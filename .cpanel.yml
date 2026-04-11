@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/$USER/public_html
+    - export DEPLOYPATH=/home/h1caljpb/public_html
     - /bin/cp -r css $DEPLOYPATH/
     - /bin/cp -r js $DEPLOYPATH/
     - /bin/cp -r images $DEPLOYPATH/
